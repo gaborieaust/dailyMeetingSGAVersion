@@ -17,6 +17,7 @@ public class AppUser {
     public AppUser(Long id, String name) {
         this.id = id;
         this.name = name;
+        this.isActive = isActive;
     }
 
     public AppUser() {
@@ -36,5 +37,13 @@ public class AppUser {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
