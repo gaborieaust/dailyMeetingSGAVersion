@@ -3,40 +3,53 @@ package com.example.dailymeeting.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 import java.sql.Timestamp;
 
 @Entity
-@IdClass(ParticipationId.class)
 public class Participation {
+
     @Id
-    private Long userIdx;
-    @Id
-    private Long meetingIdx;
+    private Long id;
+    @ManyToOne
+    private AppUser appUser;
+    @ManyToOne
+    private Meeting meeting;
     private int speakingDuration;
 
-    public Participation(Long userIdx, Long meetingIdx, int speakingDuration) {
-        this.userIdx = userIdx;
-        this.meetingIdx = meetingIdx;
+    public Participation(Long id, AppUser appUser, Meeting meeting, int speakingDuration) {
+        this.id = id;
+        this.appUser = appUser;
+        this.meeting = meeting;
         this.speakingDuration = speakingDuration;
     }
 
-    public Participation(){
+    public Participation() {
+
     }
 
-    public Long getUserIdx() {
-        return userIdx;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserIdx(Long userIdx) {
-        this.userIdx = userIdx;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getMeetingIdx() {
-        return meetingIdx;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setMeetingIdx(Long meetingIdx) {
-        this.meetingIdx = meetingIdx;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
+    public Meeting getMeeting() {
+        return meeting;
+    }
+
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
     }
 
     public int getSpeakingDuration() {
@@ -46,5 +59,4 @@ public class Participation {
     public void setSpeakingDuration(int speakingDuration) {
         this.speakingDuration = speakingDuration;
     }
-
 }
