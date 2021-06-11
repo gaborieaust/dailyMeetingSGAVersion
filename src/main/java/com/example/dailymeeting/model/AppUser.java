@@ -10,6 +10,7 @@ public class AppUser {
     @SequenceGenerator(name = "user_id_seq", allocationSize = 1)
     private Long id;
     private String name;
+    private boolean isActive;
     //private List<UserRole> roles;
 
 
