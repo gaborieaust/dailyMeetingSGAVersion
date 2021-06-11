@@ -1,23 +1,24 @@
 package com.example.dailymeeting.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-public class User {
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
     @SequenceGenerator(name = "user_id_seq", allocationSize = 1)
     private Long id;
     private String name;
-    //private String role;
+    //private List<UserRole> roles;
 
 
-    public User(Long id, String name) {
+    public AppUser(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public User () {
+    public AppUser() {
     }
 
     public Long getId() {

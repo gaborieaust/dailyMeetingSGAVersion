@@ -12,9 +12,9 @@ public class Participation {
     private Long userIdx;
     @Id
     private Long meetingIdx;
-    private Timestamp speakingDuration;
+    private int speakingDuration;
 
-    public Participation(Long userIdx, Long meetingIdx, Timestamp speakingDuration) {
+    public Participation(Long userIdx, Long meetingIdx, int speakingDuration) {
         this.userIdx = userIdx;
         this.meetingIdx = meetingIdx;
         this.speakingDuration = speakingDuration;
@@ -39,13 +39,12 @@ public class Participation {
         this.meetingIdx = meetingIdx;
     }
 
-    public Timestamp getSpeakingDuration() {
+    public int getSpeakingDuration() {
         return speakingDuration;
     }
 
-    public void setSpeakingDuration(Timestamp speakingDuration) {
+    public void setSpeakingDuration(int speakingDuration) {
         this.speakingDuration = speakingDuration;
     }
-
 
 }
