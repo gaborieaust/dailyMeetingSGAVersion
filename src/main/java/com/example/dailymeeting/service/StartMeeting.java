@@ -13,4 +13,8 @@ public class StartMeeting {
        return AppUser;
    }
 
+   // fonction pour calculer le temps total du meeting
+    public static int calculateMeetingTime(int speakingTimeByReadyUsers, List<AppUser> AppUser){
+        return speakingTimeByReadyUsers*AppUser.size();
+    }
 }
