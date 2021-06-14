@@ -1,8 +1,8 @@
 package com.example.dailymeeting.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 
@@ -11,6 +11,9 @@ public class Meeting {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meeting_id_seq")
     @SequenceGenerator(name = "meeting_id_seq", allocationSize = 1)
     private Long id;
+
+    @OneToMany
+    private List<Participation> participationList;
     private LocalDateTime date;
 
     public Meeting() {
@@ -19,6 +22,7 @@ public class Meeting {
     public Meeting(Long id, LocalDateTime date) {
         this.id = id;
         this.date = date;
+        this.participationList = participationList;
     }
 
     public Long getId() {
@@ -35,5 +39,12 @@ public class Meeting {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+    public List<Participation> getParticipationList() {
+        return participationList;
+    }
+
+    public void setParticipationList(List<Participation> participation) {
+        this.participationList = participation;
     }
 }

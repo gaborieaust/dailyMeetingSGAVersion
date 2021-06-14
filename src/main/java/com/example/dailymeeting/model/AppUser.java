@@ -5,19 +5,23 @@ import java.util.List;
 
 @Entity
 public class AppUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
     @SequenceGenerator(name = "user_id_seq", allocationSize = 1)
     private Long id;
+
+    @OneToMany
+    private List<Participation> participationList;
     private String name;
     private boolean isActive;
     //private List<UserRole> roles;
-
 
     public AppUser(Long id, String name) {
         this.id = id;
         this.name = name;
         this.isActive = isActive;
+        this.participationList = participationList;
     }
 
     public AppUser() {
@@ -45,5 +49,13 @@ public class AppUser {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public List<Participation> getParticipationList() {
+        return participationList;
+    }
+
+    public void setParticipationList(List<Participation> participation) {
+        this.participationList = participation;
     }
 }
