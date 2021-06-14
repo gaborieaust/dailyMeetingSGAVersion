@@ -61,4 +61,14 @@ public class AppUser {
     public void setParticipationList(List<Participation> participation) {
         this.participationList = participation;
     }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id=" + id +
+                ", participationList=" + participationList +
+                ", name='" + name + '\'' +
+                ", isActive=" + isActive +
+                '}';
+    }
 }
