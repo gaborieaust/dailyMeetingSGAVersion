@@ -1,5 +1,7 @@
 package com.example.dailymeeting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,6 +14,7 @@ public class Meeting {
     @SequenceGenerator(name = "meeting_id_seq", allocationSize = 1)
     private Long id;
 
+    @JsonIgnore
     @OneToMany
     private List<Participation> participationList;
     private LocalDateTime date;
