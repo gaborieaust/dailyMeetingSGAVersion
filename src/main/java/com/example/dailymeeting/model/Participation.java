@@ -1,9 +1,6 @@
 package com.example.dailymeeting.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -11,9 +8,11 @@ public class Participation {
 
     @Id
     private Long id;
-    @ManyToOne
+    @ManyToOne//(fetch = FetchType.LAZY)
+    //@JoinColumn (name = "appUser")
     private AppUser appUser;
-    @ManyToOne
+    @ManyToOne//(fetch = FetchType.LAZY)
+    //@JoinColumn (name = "meeting")
     private Meeting meeting;
     private int speakingDuration;
 

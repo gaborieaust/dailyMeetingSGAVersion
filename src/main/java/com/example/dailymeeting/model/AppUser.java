@@ -14,7 +14,7 @@ public class AppUser {
     private Long id;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany//(mappedBy = "Participation")
     private List<Participation> participationList;
     private String name;
     private boolean isActive;
