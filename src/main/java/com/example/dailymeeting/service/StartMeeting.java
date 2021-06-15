@@ -8,13 +8,13 @@ import java.util.List;
 public class StartMeeting {
     // fonction pour randomiser la liste
 
-   public static List<AppUser> shuffleList(List<AppUser> appUser) {
-       Collections.shuffle(appUser);
-       return appUser;
+   public static List<AppUser> shuffleList(List<AppUser> appUserList) {
+       Collections.shuffle(appUserList);
+       return appUserList;
    }
 
    // fonction pour calculer le temps total du meeting
-    public static int calculateMeetingTime(int speakingTimeByReadyUsers, List<AppUser> appUser){
-        return speakingTimeByReadyUsers*appUser.size();
+    public static int calculateMeetingTime(int speakingTimeByReadyUsers, List<AppUser> appUserList){
+        return speakingTimeByReadyUsers*appUserList.size();
     }
 }

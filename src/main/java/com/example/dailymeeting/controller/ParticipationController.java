@@ -2,6 +2,8 @@ package com.example.dailymeeting.controller;
 
 import com.example.dailymeeting.model.Participation;
 import com.example.dailymeeting.repository.ParticipationRepository;
+import com.example.dailymeeting.service.SwitchAppUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.Optional;
 @RequestMapping("/api/participation")
 public class ParticipationController {
 
-    private ParticipationRepository participationRepository;
+   private ParticipationRepository participationRepository;
 
     public ParticipationController(ParticipationRepository participationRepository) {
         this.participationRepository = participationRepository;
