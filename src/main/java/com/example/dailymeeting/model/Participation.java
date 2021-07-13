@@ -1,7 +1,6 @@
 package com.example.dailymeeting.model;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
 public class Participation {
