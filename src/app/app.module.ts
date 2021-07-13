@@ -6,18 +6,21 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { UsersListComponent } from './users-list/users-list.component';
 import { MeetingBoardComponent } from './meeting-board/meeting-board.component';
 import {RouterModule} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthentificationComponent,
     UsersListComponent,
-    MeetingBoardComponent
+    MeetingBoardComponent,
+
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     RouterModule.forRoot([
-      {path:'', component: UsersListComponent },
+      {path:'test', component : UsersListComponent},
       {path:'auth', component: AuthentificationComponent}
       ]
     )

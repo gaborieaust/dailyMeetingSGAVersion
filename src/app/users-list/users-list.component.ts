@@ -16,6 +16,6 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  console.log(this.appUsersList)
+    console.log(this.appUsersList)
   }
 }
