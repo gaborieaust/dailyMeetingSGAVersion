@@ -4,3 +4,11 @@ export interface AppUser{
   isActive: boolean;
 }
 
+export interface AppUserMeeting{
+  id: number;
+  name: string;
+  isParticipant: boolean;
+  isSpeaking: boolean;
+  isTimeKeeper: boolean;
+}
+

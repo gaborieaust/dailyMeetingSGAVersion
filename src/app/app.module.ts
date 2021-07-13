@@ -20,7 +20,7 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     BrowserModule,
     RouterModule.forRoot([
-      {path:'test', component : UsersListComponent},
+      {path:'', component : UsersListComponent},
       {path:'auth', component: AuthentificationComponent}
       ]
     )

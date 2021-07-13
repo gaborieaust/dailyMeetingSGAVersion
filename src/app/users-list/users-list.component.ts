@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Service} from "../service";
+import {AppUser, AppUserMeeting} from "../appUser";
 
 
 @Component({
@@ -8,7 +9,7 @@ import {Service} from "../service";
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
-  appUsersList= this.service.getAppUsersList();
+  appUsersMeetingList: AppUserMeeting[] = [];
 
   constructor(
     private service: Service,
@@ -16,6 +17,23 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.appUsersList)
+
+    this.service.getAppUsersList().subscribe(appUsersList => {
+      for (let appUser of appUsersList) {
+        // @ts-ignore
+        this.appUsersMeetingList.push([{
+          "id": appUser.id,
+          "name": appUser.name,
+          "isParticipant": true,
+          "isSpeaking": true,
+          "isTimeKeeper": true,
+        }])
+        console.log(this.appUsersMeetingList)}
+      }
+    )
   }
 }
+
+
+
+

@@ -15,6 +15,6 @@ export class Service {
 
 // to get the list of users
   getAppUsersList() {
-    return this.http.get<AppUser[]>(this.baseAPIUrl + 'user')
+    return this.http.get<AppUser[]>(this.baseAPIUrl + 'user/active')
   }
 }
