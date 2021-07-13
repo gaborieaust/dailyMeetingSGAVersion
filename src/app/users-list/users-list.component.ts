@@ -21,13 +21,13 @@ export class UsersListComponent implements OnInit {
     this.service.getAppUsersList().subscribe(appUsersList => {
       for (let appUser of appUsersList) {
         // @ts-ignore
-        this.appUsersMeetingList.push([{
+        this.appUsersMeetingList.push({
           "id": appUser.id,
           "name": appUser.name,
           "isParticipant": true,
           "isSpeaking": true,
           "isTimeKeeper": true,
-        }])
+        })
         console.log(this.appUsersMeetingList)}
       }
     )
