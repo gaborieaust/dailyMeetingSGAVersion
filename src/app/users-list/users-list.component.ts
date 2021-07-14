@@ -17,7 +17,7 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    // inject the list of all users actives into a new list of new objects : AppUser
     this.service.getAppUsersList().subscribe(appUsersList => {
       for (let appUser of appUsersList) {
         // @ts-ignore
