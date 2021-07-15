@@ -23,7 +23,8 @@ import { InitializationComponent } from './initialization/initialization.compone
     BrowserModule,
     RouterModule.forRoot([
       {path:'', component : InitializationComponent},
-      {path:'auth', component: AuthentificationComponent}
+      {path:'auth', component: AuthentificationComponent},
+      {path:'meeting', component: UsersListComponent}
       ]
     )
   ],

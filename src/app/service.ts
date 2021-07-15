@@ -22,4 +22,10 @@ export class Service {
   getLastMeeting(){
     return this.http.get<Meeting>(this.baseAPIUrl + 'meetings/last')
   }
+
+  // to create a meeting
+  createMeeting(meeting : Meeting){
+    return this.http.post<Meeting>(this.baseAPIUrl +'meetings',meeting)
+  }
+
 }
