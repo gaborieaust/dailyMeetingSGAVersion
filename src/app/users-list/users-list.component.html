@@ -11,7 +11,8 @@
   <tbody>
   <tr *ngFor="let AppUserMeeting of appUsersMeetingList" >
     <td>{{AppUserMeeting.name}}</td>
-    <td *ngIf="AppUserMeeting.isParticipant==true"> <img src="assets/petite-case-cochee.jpg"></td>
+    <td> <img *ngIf="AppUserMeeting.isParticipant==true " src="assets/tick.jpg">
+         <img (click)="participate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==false " src="assets/emptyTick.jpg"></td>
     <td *ngIf="AppUserMeeting.isSpeaking==true"><img src="assets/micro.jpg"></td>
     <td *ngIf="AppUserMeeting.isTimeKeeper==true"><img src="assets/timekeeper.jpg"></td>
   </tr>

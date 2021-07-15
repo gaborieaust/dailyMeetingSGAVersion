@@ -1,6 +1,7 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {AppUser} from "./appUser";
+import {Meeting} from "./meeting";
 
 
 @Injectable({
@@ -16,5 +17,9 @@ export class Service {
 // to get the list of users
   getAppUsersList() {
     return this.http.get<AppUser[]>(this.baseAPIUrl + 'user/active')
+  }
+
+  getLastMeeting(){
+    return this.http.get<Meeting>(this.baseAPIUrl + 'meetings/last')
   }
 }

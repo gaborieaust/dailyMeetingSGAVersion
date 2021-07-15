@@ -7,6 +7,7 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { MeetingBoardComponent } from './meeting-board/meeting-board.component';
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
+import { InitializationComponent } from './initialization/initialization.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +15,14 @@ import {HttpClientModule} from "@angular/common/http";
     AuthentificationComponent,
     UsersListComponent,
     MeetingBoardComponent,
+    InitializationComponent,
 
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     RouterModule.forRoot([
-      {path:'', component : UsersListComponent},
+      {path:'', component : InitializationComponent},
       {path:'auth', component: AuthentificationComponent}
       ]
     )

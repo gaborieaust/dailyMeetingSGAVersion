@@ -24,13 +24,17 @@ export class UsersListComponent implements OnInit {
         this.appUsersMeetingList.push({
           "id": appUser.id,
           "name": appUser.name,
-          "isParticipant": true,
-          "isSpeaking": true,
-          "isTimeKeeper": true,
+          "isParticipant": false,
+          "isSpeaking": false,
+          "isTimeKeeper": false,
         })
         console.log(this.appUsersMeetingList)}
       }
     )
+  }
+
+  participate(appUserMeeting : AppUserMeeting){
+    appUserMeeting.isParticipant = true
   }
 }
 
