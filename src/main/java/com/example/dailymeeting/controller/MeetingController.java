@@ -2,6 +2,7 @@ package com.example.dailymeeting.controller;
 
 import com.example.dailymeeting.model.Meeting;
 import com.example.dailymeeting.repository.MeetingRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,19 @@ public class MeetingController {
         return meetingRepository.findAll();
     }
 
+    // Récupèrer le dernier meeting en date
+
+    @GetMapping("/last")
+    public Optional<Meeting> getLastMeeting() {
+        return meetingRepository.findFirstByOrderByDateDesc();
+            }
+    // Récupérer un meeting
+
+    @GetMapping("/{id}")
+    public Optional<Meeting> getMeeting(@PathVariable long id) {
+        return meetingRepository.findById(id);
+    }
+
     // Créer un meeting
 
     @PostMapping
@@ -34,12 +48,6 @@ public class MeetingController {
         meetingRepository.save(meeting);
     }
 
-    // Récupérer un meeting
-
-    @GetMapping("/{id}")
-    public Optional<Meeting> getMeeting(@PathVariable long id) {
-        return meetingRepository.findById(id);
-    }
 
     // Supprimer un meeting
 
