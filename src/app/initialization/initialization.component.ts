@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Service} from "../service";
-import {formatDate} from "@angular/common";
-import {createComponent} from "@angular/compiler/src/core";
 
 @Component({
   selector: 'app-initialization',
@@ -35,7 +33,7 @@ export class InitializationComponent implements OnInit {
   }
 
   initMeeting() {
-    //todo régler l'issue lorsque deux utilisateurs cliquent en même temps sur la fonction de création d'un meeting;
+    // todo régler l'issue lorsque deux utilisateurs cliquent en même temps sur la fonction de création d'un meeting;
 
     // @ts-ignore
     this.service.createMeeting({
@@ -43,5 +41,4 @@ export class InitializationComponent implements OnInit {
     }).subscribe()
     location.assign('http://localhost:4200/meeting/')
   }
-
 }
