@@ -43,7 +43,7 @@ public class ParticipationController {
     }
 
     @PutMapping("/{id}")
-    public void updateParticipation(@PathVariable Long id, @RequestBody Participation updateParticipation){
+    public void updateParticipation(@RequestBody Participation updateParticipation){
         participationRepository.save(updateParticipation);
     }
 
