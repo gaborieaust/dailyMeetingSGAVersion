@@ -42,8 +42,9 @@ public class ParticipationController {
         participationRepository.save(newParticipation);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping()
     public void updateParticipation(@RequestBody Participation updateParticipation){
+        System.out.println(updateParticipation.isTimeKeeper());
         participationRepository.save(updateParticipation);
     }
 
