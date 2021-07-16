@@ -18,18 +18,33 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit(): void {
     // inject the list of all users actives into a new list of new objects : AppUser
-    this.service.getAppUsersList().subscribe(appUsersList => {
-        for (let appUser of appUsersList) {
-          this.appUsersMeetingList.push({
-            "id": appUser.id,
-            "name": appUser.name,
-            "isParticipant": false,
-            "isSpeaking": false,
-            "isTimeKeeper": false,
-          })
-        }
-      }
-    )
+    // this.service.getAppUsersList().subscribe(appUsersList => {
+    //     for (let appUser of appUsersList) {
+    //       this.appUsersMeetingList.push({
+    //         "id": appUser.id,
+    //         "name": appUser.name,
+    //         "isParticipant": false,
+    //         "isSpeaking": false,
+    //         "timeKeeper": false,
+    //       })
+    //     }
+    //   }
+    // )
+
+    this.service.getLastMeeting().subscribe(
+      lastMeeting=> this.service.getAppUsersList().subscribe(
+        appUserList=>{
+          for (let appUser of appUserList){
+            this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id, appUser.id).subscribe(
+              participation=> this.appUsersMeetingList.push({
+                "id": appUser.id,
+                "name": appUser.name,
+                "isParticipant": false,
+                "isSpeaking": false,
+                "timeKeeper": participation.timeKeeper,
+              }))
+          }
+        }))
 
     // Change "isParticipant" to "true" for each "AppuUserMeeting" who has a "participation" in the DB for this meeting
     this.service.getLastMeeting().subscribe(meeting =>
@@ -38,7 +53,6 @@ export class UsersListComponent implements OnInit {
           // @ts-ignore
           for (let participation of participationList) {
             this.appUserMeeting = this.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id === participation.appUser.id)
-            console.log(participation)
             // @ts-ignore
             this.appUserMeeting.isParticipant = true
           }
@@ -57,7 +71,7 @@ export class UsersListComponent implements OnInit {
             "id": '',
             "meeting": lastMeeting,
             "speakingDuration": 0,
-            "isTimeKeeper": false
+            "timeKeeper": false
           };
         this.service.createParticipation(participationToCreate).subscribe()
       })
@@ -80,39 +94,42 @@ export class UsersListComponent implements OnInit {
 
     // Récupérer la liste des participations pour ce meeting
     // Si il y a un timeKeeper alors rafraichissement de la page
-    // Sinon changer le isTimeKeeper en true dans l'API et dans le front
+    // Sinon changer le timeKeeper en true dans l'API et dans le front
 
     this.service.getLastMeeting().subscribe(lastMeeting => this.service.getAllParticipationsByMeetingId(lastMeeting.id)
       .subscribe(participationList => {
-          // @ts-ignore
-          for (let participation of participationList) {
-            if (participation.isTimeKeeper == 'true') {
-              location.assign('http://localhost:4200/meeting/')
-            } else {// @ts-ignore
-              appUserMeeting?.isTimeKeeper = true
-
-              this.service.getLastMeeting().subscribe(lastMeeting => {
-                this.service.getAppUsersList().subscribe(AppUsersList => {
-                  let appUser = AppUsersList.find(appUser => appUser.id === appUserMeeting.id);
-                  let participationToUpdate =
-                    {
-                      "appUser": appUser,
-                      "id": participation.id,
-                      "meeting": lastMeeting,
-                      "speakingDuration": 0,
-                      "isTimeKeeper": true
-                    };
-                  console.log(participationToUpdate)
-                  this.service.updateParticipationIsTimekeeper(participationToUpdate).subscribe()
-                })
-            })
-          }}
+        let timeKeeperExist = false
+        // @ts-ignore
+        for (let participation of participationList) {
+          if (participation.timeKeeper == 'true') {
+            timeKeeperExist = true
+          }
         }
-      )
-    )
+        if (timeKeeperExist) {
+          location.assign('http://localhost:4200/meeting/')
+        } else {
+          // @ts-ignore
+          appUserMeeting?.timeKeeper = true;
 
-
-  }
+          this.service.getLastMeeting().subscribe(lastMeeting => {
+            this.service.getAppUsersList().subscribe(AppUsersList => {
+              let appUser = AppUsersList.find(appUser => appUser.id === appUserMeeting.id);
+              this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id, appUser?.id).subscribe(participation=>
+              {let participationToUpdate =
+                {
+                  "appUser": appUser,
+                  "id": participation.id,
+                  "meeting": lastMeeting,
+                  "speakingDuration": 0,
+                  "timeKeeper": true
+                };
+              console.log(participationToUpdate)
+              this.service.updateParticipationtimeKeeper(participationToUpdate).subscribe()})
+            })
+          })
+        }
+      })
+    )}
 }
 
 

@@ -28,11 +28,12 @@ export class Service {
     return this.http.get<Participation>(this.baseAPIUrl+'participation/meeting/'+meetingId)
   }
 
-  getParticipationBymeetingIdAndAppuserId(mId : number, uId : number){
+  getParticipationBymeetingIdAndAppuserId(mId: number, uId: number | undefined){
     return this.http.get<Participation>(this.baseAPIUrl+ 'participation/meeting/' + mId + '/appuser/' + uId)
   }
-  updateParticipationIsTimekeeper(participation: { appUser: AppUser | undefined; speakingDuration: number; id: string; meeting: Meeting }){
-    return this.http.put<Participation>(this.baseAPIUrl+'participation/'+ participation.id,participation)}
+
+  updateParticipationtimeKeeper(participation: { appUser: AppUser | undefined; speakingDuration: number; timeKeeper: boolean; id: number; meeting: Meeting }){
+    return this.http.put<Participation>(this.baseAPIUrl+'participation',participation)}
 
   createMeeting(meeting : Meeting){
     return this.http.post<Meeting>(this.baseAPIUrl +'meetings',meeting)

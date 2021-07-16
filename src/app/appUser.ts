@@ -9,6 +9,6 @@ export interface AppUserMeeting{
   name: string;
   isParticipant: boolean;
   isSpeaking: boolean;
-  isTimeKeeper: boolean;
+  timeKeeper: boolean;
 }
 
