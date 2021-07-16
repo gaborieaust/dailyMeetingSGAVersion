@@ -33,7 +33,9 @@ public class ParticipationController {
     }
 
     @GetMapping("/meeting/{mId}/appuser/{uId}")
-    public Optional getParticipationBy//
+    public Optional <Participation> getParticipationBymeetingIdAndAppuserId(@PathVariable Long mId, @PathVariable Long uId){
+        return participationRepository.findAllByMeeting_IdAndAppUser_Id(mId, uId);
+    }
 
     @PostMapping
     public void createParticipation(@RequestBody Participation newParticipation){

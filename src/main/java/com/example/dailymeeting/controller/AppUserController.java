@@ -39,7 +39,7 @@ public class AppUserController {
         return appUserRepository.findById(id);
     }
 
-    // Supprimer un user
+        // Supprimer un user
 
     @DeleteMapping("/{id}")
     public void deleteAppUser(@PathVariable Long id) {

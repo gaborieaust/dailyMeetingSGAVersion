@@ -15,7 +15,7 @@ public class Meeting {
     private Long id;
 
     @JsonIgnore
-    @OneToMany//(mappedBy = "Participation")
+    @OneToMany//    (mappedBy = "Participation")
     private List<Participation> participationList;
     private LocalDateTime date;
 
