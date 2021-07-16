@@ -31,6 +31,8 @@ export class Service {
   getParticipationBymeetingIdAndAppuserId(mId : number, uId : number){
     return this.http.get<Participation>(this.baseAPIUrl+ 'participation/meeting/' + mId + '/appuser/' + uId)
   }
+  updateParticipationIsTimekeeper(participation: { appUser: AppUser | undefined; speakingDuration: number; id: string; meeting: Meeting }){
+    return this.http.put<Participation>(this.baseAPIUrl+'participation/'+ participation.id,participation)}
 
   createMeeting(meeting : Meeting){
     return this.http.post<Meeting>(this.baseAPIUrl +'meetings',meeting)
