@@ -6,6 +6,8 @@ import javax.persistence.*;
 public class Participation {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "participation_id_seq")
+    @SequenceGenerator(name = "participation_id_seq", allocationSize = 1)
     private Long id;
     @ManyToOne//(fetch = FetchType.LAZY)
     //@JoinColumn (name = "appUser")

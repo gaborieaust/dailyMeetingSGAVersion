@@ -32,6 +32,9 @@ public class ParticipationController {
         return participationRepository.findAllByMeeting_Id(id);
     }
 
+    @GetMapping("/meeting/{mId}/appuser/{uId}")
+    public Optional getParticipationBy//
+
     @PostMapping
     public void createParticipation(@RequestBody Participation newParticipation){
         participationRepository.save(newParticipation);
