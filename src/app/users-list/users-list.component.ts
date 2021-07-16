@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Service} from "../service";
 import {AppUserMeeting} from "../appUser";
+import {Meeting} from "../meeting";
 
 
 @Component({
@@ -21,8 +22,7 @@ export class UsersListComponent implements OnInit {
     // inject the list of all users actives into a new list of new objects : AppUser
     this.service.getAppUsersList().subscribe(appUsersList => {
         for (let appUser of appUsersList) {
-          // @ts-ignore
-          this.appUsersMeetingList.push({
+            this.appUsersMeetingList.push({
             "id": appUser.id,
             "name": appUser.name,
             "isParticipant": false,
@@ -32,29 +32,38 @@ export class UsersListComponent implements OnInit {
         }
       }
     )
+
+    // Change "isParticipant" to "true" for each "AppuUserMeeting" who has a "participation" in the DB for this meeting
     this.service.getLastMeeting().subscribe(meeting =>
-      (this.service.getAllParticipationsByMeetingId(meeting.id).subscribe(participationList=> {
-        // @ts-ignore
-        for (let participation of participationList){
-          this.appUserMeeting = this.appUsersMeetingList.find(appUserMeeting=>appUserMeeting.id===participation.appUser.id)
-          console.log(participation)
-          this.participate(this.appUserMeeting)
+      (this.service.getAllParticipationsByMeetingId(meeting.id).subscribe(participationList => {
+
+          // @ts-ignore
+        for (let participation of participationList) {
+            this.appUserMeeting = this.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id === participation.appUser.id)
+            console.log(participation)
+            // @ts-ignore
+            this.appUserMeeting.isParticipant = true
           }
         }
       )))
   }
 
-  participate(appUserMeeting: AppUserMeeting | undefined
-  ) {
-    // @ts-ignore
-    appUserMeeting.isParticipant = true
-
-    this.service.createParticipation({
-      id: 5,
-      speakingDuration: 3000,
-      appUserId: 1,
-      meetingId: 1
-    }).subscribe()
+  // Initialize a "participation" for the AppUserMeeting and change his status "isParticipant" to "true"
+  participate(appUserMeeting: AppUserMeeting) {
+    this.service.getLastMeeting().subscribe(lastMeeting => {
+      this.service.getAppUsersList().subscribe(AppUsersList => {
+        let appUser = AppUsersList.find(appUser => appUser.id === appUserMeeting.id);
+        let participationToCreate =
+          {
+            "appUser": appUser,
+            "id": 10,
+            "meeting": lastMeeting,
+            "speakingDuration": 0
+          };
+        this.service.createParticipation(participationToCreate).subscribe()
+      })
+      appUserMeeting.isParticipant = true;
+    })
   }
 
   unParticipate(appUserMeeting
@@ -63,13 +72,6 @@ export class UsersListComponent implements OnInit {
   ) {
     appUserMeeting.isParticipant = false
   }
-
-// Requête pour récupérer l'id du last meeting
-// Rechercher toutes les participations avec l'id du meeting
-// Si participants, leurs coches passent à true
-// Si ils se cochent, ajouter les modifs en base (ajouter ou se retirer de la liste participation)
-
-
 }
 
 

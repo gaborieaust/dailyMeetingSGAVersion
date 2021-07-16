@@ -1,6 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {AppUser} from "./appUser";
+import {AppUser, AppUserMeeting} from "./appUser";
 import {Meeting} from "./meeting";
 import {Participation} from "./participation";
 import {Subscription} from "rxjs";
@@ -32,7 +32,7 @@ export class Service {
     return this.http.post<Meeting>(this.baseAPIUrl +'meetings',meeting)
   }
 
-  createParticipation(participation: Participation){
+  createParticipation(participation: { appUser: AppUser | undefined; speakingDuration: number; id: number; meeting: Meeting }){
     return this.http.post<Participation>(this.baseAPIUrl+'participation', participation)
   }
 
