@@ -56,7 +56,7 @@ export class UsersListComponent implements OnInit {
         let participationToCreate =
           {
             "appUser": appUser,
-            "id": 10,
+            "id": '',
             "meeting": lastMeeting,
             "speakingDuration": 0
           };
@@ -70,6 +70,10 @@ export class UsersListComponent implements OnInit {
                   :
                   AppUserMeeting
   ) {
+      // Delete a "participation" by getting its "Id" by "appuser id" and "meeting Id"
+    this.service.getLastMeeting().subscribe(
+      lastMeeting =>  this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id,appUserMeeting?.id ).subscribe(
+        participation => this.service.deleteParticipation(participation.id).subscribe()))
     appUserMeeting.isParticipant = false
   }
 }

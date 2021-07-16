@@ -28,12 +28,21 @@ export class Service {
     return this.http.get<Participation>(this.baseAPIUrl+'participation/meeting/'+meetingId)
   }
 
+  getParticipationBymeetingIdAndAppuserId(mId : number, uId : number){
+    return this.http.get<Participation>(this.baseAPIUrl+ 'participation/meeting/' + mId + '/appuser/' + uId)
+  }
+
   createMeeting(meeting : Meeting){
     return this.http.post<Meeting>(this.baseAPIUrl +'meetings',meeting)
   }
 
-  createParticipation(participation: { appUser: AppUser | undefined; speakingDuration: number; id: number; meeting: Meeting }){
+  createParticipation(participation: { appUser: AppUser | undefined; speakingDuration: number; id: string; meeting: Meeting }){
     return this.http.post<Participation>(this.baseAPIUrl+'participation', participation)
   }
+
+  deleteParticipation(id : number) {
+    return this.http.delete(this.baseAPIUrl+ 'participation/' +  id)
+  }
+
 
 }
