@@ -8,13 +8,22 @@
 
 
 <table>
+  <thead>
+    <tr>
+      <th></th>
+      <th><img src="assets/tick.jpg"></th>
+      <th><img src="assets/micro.jpg"></th>
+      <th><img src="assets/timekeeper.jpg"></th>
+    </tr>
+  </thead>
   <tbody>
   <tr *ngFor="let AppUserMeeting of appUsersMeetingList" >
     <td>{{AppUserMeeting.name}}</td>
     <td> <img (click)="unParticipate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==true " src="assets/tick.jpg">
          <img (click)="participate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==false " src="assets/emptyTick.jpg"></td>
-    <td *ngIf="AppUserMeeting.isSpeaking==true"><img src="assets/micro.jpg"></td>
-    <td *ngIf="AppUserMeeting.isTimeKeeper==true"><img src="assets/timekeeper.jpg"></td>
+    <td><img src="assets/micro.jpg" *ngIf="AppUserMeeting.isSpeaking==true">00:00</td>
+    <td><img (click)="timeKeeper(AppUserMeeting)" src="assets/timekeeper.jpg" *ngIf="AppUserMeeting.isTimeKeeper==true">
+        <img src="assets/emptyTick.jpg" *ngIf="AppUserMeeting.isTimeKeeper==false"></td>
   </tr>
   </tbody>
 </table>

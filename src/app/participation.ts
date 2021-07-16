@@ -3,4 +3,5 @@ export interface Participation{
   speakingDuration: number;
   appUserId: number;
   meetingId: number;
+  isTimeKeeper: boolean;
 }

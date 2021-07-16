@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Service} from "../service";
 import {AppUserMeeting} from "../appUser";
-import {Meeting} from "../meeting";
-
 
 @Component({
   selector: 'app-users-list',
@@ -58,7 +56,8 @@ export class UsersListComponent implements OnInit {
             "appUser": appUser,
             "id": '',
             "meeting": lastMeeting,
-            "speakingDuration": 0
+            "speakingDuration": 0,
+            "isTimeKeeper" : false
           };
         this.service.createParticipation(participationToCreate).subscribe()
       })
@@ -75,6 +74,16 @@ export class UsersListComponent implements OnInit {
       lastMeeting =>  this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id,appUserMeeting?.id ).subscribe(
         participation => this.service.deleteParticipation(participation.id).subscribe()))
     appUserMeeting.isParticipant = false
+  }
+
+  timeKeeper(appUserMeeting : AppUserMeeting){
+
+    // Récupérer la liste des participations pour ce meeting
+    // Si il y a un timeKeeper alors rafraichissement de la page
+    // Sinon changer le isTimeKeeper en true dans l'API et dans le front
+
+    this.service.getAllParticipationsByMeetingId()
+
   }
 }
 
