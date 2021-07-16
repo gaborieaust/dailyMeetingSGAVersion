@@ -11,6 +11,5 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
 
     List<Participation> findAllByMeeting_Id(Long id);
 
-
     Optional<Participation> findAllByMeeting_IdAndAppUser_Id(Long mId, Long uId);
 }

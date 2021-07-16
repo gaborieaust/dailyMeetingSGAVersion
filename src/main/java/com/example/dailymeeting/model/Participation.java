@@ -16,12 +16,14 @@ public class Participation {
     //@JoinColumn (name = "meeting")
     private Meeting meeting;
     private int speakingDuration;
+    private boolean isTimeKeeper;
 
-    public Participation(Long id, AppUser appUser, Meeting meeting, int speakingDuration) {
+    public Participation(Long id, AppUser appUser, Meeting meeting, int speakingDuration, boolean isTimeKeeper) {
         this.id = id;
         this.appUser = appUser;
         this.meeting = meeting;
         this.speakingDuration = speakingDuration;
+        this.isTimeKeeper = isTimeKeeper;
     }
 
     public Participation() {
@@ -58,5 +60,13 @@ public class Participation {
 
     public void setSpeakingDuration(int speakingDuration) {
         this.speakingDuration = speakingDuration;
+    }
+
+    public boolean isTimeKeeper() {
+        return isTimeKeeper;
+    }
+
+    public void setTimeKeeper(boolean timeKeeper) {
+        isTimeKeeper = timeKeeper;
     }
 }
