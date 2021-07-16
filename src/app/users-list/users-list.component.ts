@@ -20,7 +20,7 @@ export class UsersListComponent implements OnInit {
     // inject the list of all users actives into a new list of new objects : AppUser
     this.service.getAppUsersList().subscribe(appUsersList => {
         for (let appUser of appUsersList) {
-            this.appUsersMeetingList.push({
+          this.appUsersMeetingList.push({
             "id": appUser.id,
             "name": appUser.name,
             "isParticipant": false,
@@ -36,7 +36,7 @@ export class UsersListComponent implements OnInit {
       (this.service.getAllParticipationsByMeetingId(meeting.id).subscribe(participationList => {
 
           // @ts-ignore
-        for (let participation of participationList) {
+          for (let participation of participationList) {
             this.appUserMeeting = this.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id === participation.appUser.id)
             console.log(participation)
             // @ts-ignore
@@ -57,7 +57,7 @@ export class UsersListComponent implements OnInit {
             "id": '',
             "meeting": lastMeeting,
             "speakingDuration": 0,
-            "isTimeKeeper" : false
+            "isTimeKeeper": false
           };
         this.service.createParticipation(participationToCreate).subscribe()
       })
@@ -69,20 +69,33 @@ export class UsersListComponent implements OnInit {
                   :
                   AppUserMeeting
   ) {
-      // Delete a "participation" by getting its "Id" by "appuser id" and "meeting Id"
+    // Delete a "participation" by getting its "Id" by "appuser id" and "meeting Id"
     this.service.getLastMeeting().subscribe(
-      lastMeeting =>  this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id,appUserMeeting?.id ).subscribe(
+      lastMeeting => this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id, appUserMeeting?.id).subscribe(
         participation => this.service.deleteParticipation(participation.id).subscribe()))
     appUserMeeting.isParticipant = false
   }
 
-  timeKeeper(appUserMeeting : AppUserMeeting){
+  timeKeeper(appUserMeeting: AppUserMeeting) {
 
     // Récupérer la liste des participations pour ce meeting
     // Si il y a un timeKeeper alors rafraichissement de la page
     // Sinon changer le isTimeKeeper en true dans l'API et dans le front
 
-    this.service.getAllParticipationsByMeetingId()
+    this.service.getLastMeeting().subscribe(lastMeeting => this.service.getAllParticipationsByMeetingId(lastMeeting.id)
+      .subscribe(participationList => {
+          // @ts-ignore
+          for (let participation of participationList) {
+            if (participation.isTimeKeeper == 'true') {
+              location.assign('http://localhost:4200/meeting/')
+            } else {// @ts-ignore
+              appUserMeeting?.isTimeKeeper = true
+            }
+          }
+        }
+      )
+    )
+
 
   }
 }
