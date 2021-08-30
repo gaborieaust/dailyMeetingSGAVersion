@@ -9,6 +9,7 @@ import {AppUser, AppUserMeeting} from "../appUser";
 })
 export class UsersListComponent implements OnInit {
   appUsersMeetingList: AppUserMeeting[] = [];
+  dateMeeting: Date | undefined;
   private appUserMeeting: AppUserMeeting | undefined;
 
   constructor(
@@ -17,6 +18,7 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.service.getLastMeeting().subscribe(lastMeeting =>
       this.service.getAllParticipationsByMeetingId(lastMeeting.id).subscribe(
         participationList =>
@@ -31,7 +33,9 @@ export class UsersListComponent implements OnInit {
                   "timeKeeper": false,
                 })
               }
-              // Update "isParticpant" and "isTimeKeeper" in the appUsersMeetingList from th BDD
+              this.dateMeeting = lastMeeting.date
+
+            // Update "isParticpant" and "isTimeKeeper" in the appUsersMeetingList from th BDD
               // @ts-ignore
               for (let participation of participationList) {
                 this.appUserMeeting = this.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id === participation.appUser.id)

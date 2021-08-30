@@ -1,30 +1,37 @@
-<p>
-  Daily meeting from
-</p>
-
-<div>
-  Liste des participants
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container col-3">
+  Daily meeting from {{dateMeeting}}
 </div>
 
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th><img src="assets/tick.jpg"></th>
-      <th><img src="assets/micro.jpg"></th>
-      <th><img src="assets/timekeeper.jpg"></th>
+<div class="container col-3 float-left">
+  <div>
+    Liste des participants
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th><img src="assets/tick.jpg"></th>
+        <th><img src="assets/micro.jpg"></th>
+        <th><img src="assets/timekeeper.jpg"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let AppUserMeeting of appUsersMeetingList" >
+      <td>{{AppUserMeeting.name}}</td>
+      <td> <img (click)="unParticipate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==true " src="assets/tick.jpg">
+           <img (click)="participate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==false " src="assets/emptyTick.jpg"></td>
+      <td><img src="assets/micro.jpg" *ngIf="AppUserMeeting.isSpeaking==true">00:00</td>
+      <td><img src="assets/timekeeper.jpg"*ngIf="AppUserMeeting.timeKeeper==true">
+          <img (click)="timeKeeper(AppUserMeeting)" src="assets/emptyTick.jpg" *ngIf="AppUserMeeting.timeKeeper==false"></td>
     </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let AppUserMeeting of appUsersMeetingList" >
-    <td>{{AppUserMeeting.name}}</td>
-    <td> <img (click)="unParticipate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==true " src="assets/tick.jpg">
-         <img (click)="participate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==false " src="assets/emptyTick.jpg"></td>
-    <td><img src="assets/micro.jpg" *ngIf="AppUserMeeting.isSpeaking==true">00:00</td>
-    <td><img src="assets/timekeeper.jpg"*ngIf="AppUserMeeting.timeKeeper==true">
-        <img (click)="timeKeeper(AppUserMeeting)" src="assets/emptyTick.jpg" *ngIf="AppUserMeeting.timeKeeper==false"></td>
-  </tr>
-  </tbody>
-</table>
-
+    </tbody>
+  </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
