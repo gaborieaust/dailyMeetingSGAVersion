@@ -8,6 +8,7 @@ import { MeetingBoardComponent } from './meeting-board/meeting-board.component';
 import {Router, RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { InitializationComponent } from './initialization/initialization.component';
+import { MainBoardComponent } from './main-board/main-board.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { InitializationComponent } from './initialization/initialization.compone
     UsersListComponent,
     MeetingBoardComponent,
     InitializationComponent,
+    MainBoardComponent,
 
   ],
   imports: [
@@ -24,7 +26,7 @@ import { InitializationComponent } from './initialization/initialization.compone
     RouterModule.forRoot([
       {path:'', component : InitializationComponent},
       {path:'auth', component: AuthentificationComponent},
-      {path:'meeting', component: UsersListComponent},
+      {path:'meeting', component: MainBoardComponent},
       ]
     )
   ],

@@ -14,6 +14,7 @@ export class UsersListComponent implements OnInit {
 
   constructor(
     private service: Service,
+
   ) {
   }
 
