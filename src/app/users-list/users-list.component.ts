@@ -72,6 +72,7 @@ export class UsersListComponent implements OnInit {
       lastMeeting => this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id, appUserMeeting?.id).subscribe(
         participation => this.service.deleteParticipation(participation.id).subscribe()))
     appUserMeeting.isParticipant = false
+    appUserMeeting.timeKeeper = false
   }
 
   timeKeeper(appUserMeeting: AppUserMeeting) {
