@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Service} from "../service";
-import {AppUserMeeting} from "../appUser";
+import {AppUser, AppUserMeeting} from "../appUser";
 
 @Component({
   selector: 'app-users-list',
@@ -9,7 +9,7 @@ import {AppUserMeeting} from "../appUser";
 })
 export class UsersListComponent implements OnInit {
   appUsersMeetingList: AppUserMeeting[] = [];
-  private appUserMeeting: AppUserMeeting | undefined
+  private appUserMeeting: AppUserMeeting | undefined;
 
   constructor(
     private service: Service,
@@ -17,47 +17,31 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // inject the list of all users actives into a new list of new objects : AppUser
-    // this.service.getAppUsersList().subscribe(appUsersList => {
-    //     for (let appUser of appUsersList) {
-    //       this.appUsersMeetingList.push({
-    //         "id": appUser.id,
-    //         "name": appUser.name,
-    //         "isParticipant": false,
-    //         "isSpeaking": false,
-    //         "timeKeeper": false,
-    //       })
-    //     }
-    //   }
-    // )
-
-    this.service.getLastMeeting().subscribe(
-      lastMeeting=> this.service.getAppUsersList().subscribe(
-        appUserList=>{
-          for (let appUser of appUserList){
-            this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id, appUser.id).subscribe(
-              participation=> this.appUsersMeetingList.push({
-                "id": appUser.id,
-                "name": appUser.name,
-                "isParticipant": false,
-                "isSpeaking": false,
-                "timeKeeper": participation.timeKeeper,
-              }))
-          }
-        }))
-
-    // Change "isParticipant" to "true" for each "AppuUserMeeting" who has a "participation" in the DB for this meeting
-    this.service.getLastMeeting().subscribe(meeting =>
-      (this.service.getAllParticipationsByMeetingId(meeting.id).subscribe(participationList => {
-
-          // @ts-ignore
-          for (let participation of participationList) {
-            this.appUserMeeting = this.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id === participation.appUser.id)
-            // @ts-ignore
-            this.appUserMeeting.isParticipant = true
-          }
-        }
-      )))
+    this.service.getLastMeeting().subscribe(lastMeeting =>
+      this.service.getAllParticipationsByMeetingId(lastMeeting.id).subscribe(
+        participationList =>
+          // inject the list of all users actives into a new list of new objects : AppUser
+          this.service.getAppUsersList().subscribe(appUsersList => {
+              for (let appUser of appUsersList) {
+                this.appUsersMeetingList.push({
+                  "id": appUser.id,
+                  "name": appUser.name,
+                  "isParticipant": false,
+                  "isSpeaking": false,
+                  "timeKeeper": false,
+                })
+              }
+              // Update "isParticpant" and "isTimeKeeper" in the appUsersMeetingList from th BDD
+              // @ts-ignore
+              for (let participation of participationList) {
+                this.appUserMeeting = this.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id === participation.appUser.id)
+                // @ts-ignore
+                this.appUserMeeting.isParticipant = true
+                // @ts-ignore
+                this.appUserMeeting.timeKeeper = participation.timeKeeper
+              }
+            }
+          )))
   }
 
   // Initialize a "participation" for the AppUserMeeting and change his status "isParticipant" to "true"
@@ -101,7 +85,7 @@ export class UsersListComponent implements OnInit {
         let timeKeeperExist = false
         // @ts-ignore
         for (let participation of participationList) {
-          if (participation.timeKeeper == 'true') {
+          if (participation.timeKeeper === true) {
             timeKeeperExist = true
           }
         }
@@ -114,22 +98,22 @@ export class UsersListComponent implements OnInit {
           this.service.getLastMeeting().subscribe(lastMeeting => {
             this.service.getAppUsersList().subscribe(AppUsersList => {
               let appUser = AppUsersList.find(appUser => appUser.id === appUserMeeting.id);
-              this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id, appUser?.id).subscribe(participation=>
-              {let participationToUpdate =
-                {
-                  "appUser": appUser,
-                  "id": participation.id,
-                  "meeting": lastMeeting,
-                  "speakingDuration": 0,
-                  "timeKeeper": true
-                };
-              console.log(participationToUpdate)
-              this.service.updateParticipationtimeKeeper(participationToUpdate).subscribe()})
+              this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id, appUser?.id).subscribe(participation => {
+                let participationToUpdate =
+                  {
+                    "appUser": appUser,
+                    "id": participation.id,
+                    "meeting": lastMeeting,
+                    "speakingDuration": 0,
+                    "timeKeeper": true
+                  };
+                this.service.updateParticipationtimeKeeper(participationToUpdate).subscribe()
+              })
             })
           })
         }
-      })
-    )}
+      }))
+  }
 }
 
 
