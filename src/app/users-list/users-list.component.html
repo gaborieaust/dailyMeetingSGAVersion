@@ -26,7 +26,7 @@
         <td>{{AppUserMeeting.name}}</td>
         <td> <img (click)="unParticipate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==true " src="../../assets/tick.jpg">
              <img (click)="participate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==false " src="../../assets/emptyTick.jpg"></td>
-        <td><img src="../../assets/micro.jpg"></td>
+        <td><img src="../../assets/micro.jpg">{{AppUserMeeting.isSpeaking}}</td>
         <td><img src="../../assets/timekeeper.jpg" *ngIf="AppUserMeeting.timeKeeper==true">
             <img (click)="timeKeeper(AppUserMeeting)" src="../../assets/emptyTick.jpg" *ngIf="AppUserMeeting.timeKeeper==false"></td>
       </tr>

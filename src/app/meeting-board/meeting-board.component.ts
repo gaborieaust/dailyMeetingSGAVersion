@@ -48,8 +48,8 @@ export class MeetingBoardComponent implements OnInit {
 
     // Récupérer le dernier speaking Duration
     this.usersListService.stopChrono = new Date();
-    let speakingDuration = (this.usersListService.stopChrono.getTime()
-      - this.usersListService.startChrono.getTime())/1000
+    let speakingDuration = Math.round((this.usersListService.stopChrono.getTime()
+      - this.usersListService.startChrono.getTime())/1000)
 
     this.service.getLastMeeting().subscribe(lastMeeting => {
       this.service.getAppUsersList().subscribe(AppUsersList => {
@@ -64,6 +64,11 @@ export class MeetingBoardComponent implements OnInit {
               "timeKeeper": this.currentSpeaker.timeKeeper
             };
           this.service.updateParticipation(participationToUpdate).subscribe()
+
+          // Save speaking duration in appUserMeeting of AppUsersMeetingList
+          // @ts-ignore
+          this.usersListService.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id=== this.currentSpeaker.id).isSpeaking = participationToUpdate.speakingDuration
+          console.log(participation.id + " ==>" + participationToUpdate.speakingDuration)
 
           // Changer le currentSpeaker
           if (this.usersListService.index == this.usersListService.appUsersMeetingList.length-1){
@@ -90,8 +95,8 @@ export class MeetingBoardComponent implements OnInit {
 
     // Récupérer le dernier speaking Duration
     this.usersListService.stopChrono = new Date();
-    let speakingDuration = (this.usersListService.stopChrono.getTime()
-      - this.usersListService.startChrono.getTime())/1000
+    let speakingDuration = Math.round((this.usersListService.stopChrono.getTime()
+      - this.usersListService.startChrono.getTime())/1000)
 
     this.service.getLastMeeting().subscribe(lastMeeting => {
       this.service.getAppUsersList().subscribe(AppUsersList => {
@@ -106,6 +111,13 @@ export class MeetingBoardComponent implements OnInit {
               "timeKeeper": this.currentSpeaker.timeKeeper
             };
           this.service.updateParticipation(participationToUpdate).subscribe()
+
+          // Save speaking duration in appUserMeeting of AppUsersMeetingList
+          // @ts-ignore
+          this.usersListService.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id=== this.currentSpeaker.id).isSpeaking = participationToUpdate.speakingDuration
+          console.log(participation.id + " ==>" + participationToUpdate.speakingDuration)
+
+          this.usersListService.meetingStarted= false;
         })
       })
     })

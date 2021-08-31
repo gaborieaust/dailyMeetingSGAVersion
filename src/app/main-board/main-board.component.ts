@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UsersListComponent} from "../users-list/users-list.component";
+
 
 @Component({
   selector: 'app-main-board',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainBoardComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
