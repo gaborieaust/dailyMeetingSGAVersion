@@ -12,15 +12,12 @@
       <div *ngIf="this.usersListService.meetingStarted == true" class="mt-5">
         {{this.currentSpeaker.name}}
       </div>
-
-
-
       <div class="mt-5">
         <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false"  (click)="nextSpeaker()" class="startMeetingButton mt-5">Next</button>
       </div>
-
-
-
+      <div class="mt-5">
+        <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == true"  (click)="endMeeting()" class="startMeetingButton mt-5">End Meeting</button>
+      </div>
     </div>
   </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

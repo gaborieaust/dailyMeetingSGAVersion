@@ -32,7 +32,7 @@ export class Service {
     return this.http.get<Participation>(this.baseAPIUrl+ 'participation/meeting/' + mId + '/appuser/' + uId)
   }
 
-  updateParticipationtimeKeeper(participation: { appUser: AppUser | undefined; speakingDuration: number; timeKeeper: boolean; id: number; meeting: Meeting }){
+  updateParticipation(participation: { appUser: AppUser | undefined; speakingDuration: number; timeKeeper: boolean; id: number; meeting: Meeting }){
     return this.http.put<Participation>(this.baseAPIUrl+'participation',participation)}
 
   createMeeting(meeting : Meeting){

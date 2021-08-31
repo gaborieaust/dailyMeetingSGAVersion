@@ -19,7 +19,7 @@ export class UsersListComponent implements OnInit {
   constructor(
     private service: Service,
     private datePipe: DatePipe,
-    private usersListService : UsersListService,
+    public usersListService : UsersListService,
   ) {
   }
 
@@ -118,7 +118,7 @@ export class UsersListComponent implements OnInit {
                     "speakingDuration": 0,
                     "timeKeeper": true
                   };
-                this.service.updateParticipationtimeKeeper(participationToUpdate).subscribe()
+                this.service.updateParticipation(participationToUpdate).subscribe()
               })
             })
           })

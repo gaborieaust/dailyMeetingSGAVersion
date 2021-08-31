@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersListService} from "../users-list.service";
 import {AppUserMeeting} from "../appUser";
+import {Service} from "../service";
 
 @Component({
   selector: 'app-meeting-board',
@@ -19,6 +20,7 @@ export class MeetingBoardComponent implements OnInit {
       } ;
   //index : number =0;
   constructor(
+    private service : Service,
     public usersListService : UsersListService
   ) { }
 
@@ -27,31 +29,85 @@ export class MeetingBoardComponent implements OnInit {
 
   startMeeting () {
     this.usersListService.meetingStarted = true;
-    // boucler sur la liste des appUserMeetingList et mettre dans la boucle un push si le user est participant sinon le retirer et le mettre dans une autre
-    for ( let appUserMeeting  in this.usersListService.appUsersMeetingList) {
-        console.log(appUserMeeting)
-    }
-    //générer la liste aléatoire de participants
 
+    // localStorage.setItem("isMeetingStarted", JSON.stringify(this.usersListService.meetingStarted));
+    // let unTest = localStorage.getItem("isMeetingStarted")
+
+    this.usersListService.splitParticipationOrNot();
+
+    //générer la liste aléatoire de participants
     this.usersListService.usersListRandomlySorted();
-    //remise en ordre suivant la liste dans le composant app users list
+
     // afficher le premier participant dans le componant meeting board
     this.currentSpeaker = this.usersListService.appUsersMeetingList[this.usersListService.index];
-    //faire apparaître les boutons Break/next/end meeting
+
+    this.usersListService.startChrono = new Date();
   }
 
   nextSpeaker () {
-    if (this.usersListService.index == this.usersListService.appUsersMeetingList.length-1){
-      this.usersListService.lastUser = true;
-    } else {
-      this.usersListService.index = this.usersListService.index + 1;
-      this.currentSpeaker = this.usersListService.appUsersMeetingList[this.usersListService.index];
-    }
-    //sessionStorage.setItem(this.usersListService.index);
-    //if (this.usersListService.index == this.usersListService.appUsersMeetingList.length){
 
+    // Récupérer le dernier speaking Duration
+    this.usersListService.stopChrono = new Date();
+    let speakingDuration = (this.usersListService.stopChrono.getTime()
+      - this.usersListService.startChrono.getTime())/1000
+
+    this.service.getLastMeeting().subscribe(lastMeeting => {
+      this.service.getAppUsersList().subscribe(AppUsersList => {
+        let appUser = AppUsersList.find(appUser => appUser.id === this.currentSpeaker.id);
+        this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id, this.currentSpeaker.id).subscribe(participation => {
+          let participationToUpdate =
+            {
+              "appUser": appUser,
+              "id": participation.id,
+              "meeting": lastMeeting,
+              "speakingDuration": speakingDuration,
+              "timeKeeper": this.currentSpeaker.timeKeeper
+            };
+          this.service.updateParticipation(participationToUpdate).subscribe()
+
+          // Changer le currentSpeaker
+          if (this.usersListService.index == this.usersListService.appUsersMeetingList.length-1){
+            this.currentSpeaker = this.usersListService.appUsersMeetingList[this.usersListService.index];
+          } else {
+            this.usersListService.index = this.usersListService.index + 1;
+            this.currentSpeaker = this.usersListService.appUsersMeetingList[this.usersListService.index];
+          }
+
+          // Changer le bouton Next à EndMeeting
+          if(this.usersListService.index == this.usersListService.appUsersMeetingList.length-1){
+            this.usersListService.lastUser = true;
+          }
+
+          // Réinitialiser le chrono pour le prochain participant
+          this.usersListService.startChrono = new Date();
+        })
+      })
+    })
+    //localStorage.setItem(this.usersListService.index);
   }
 
+  endMeeting(){
 
+    // Récupérer le dernier speaking Duration
+    this.usersListService.stopChrono = new Date();
+    let speakingDuration = (this.usersListService.stopChrono.getTime()
+      - this.usersListService.startChrono.getTime())/1000
 
+    this.service.getLastMeeting().subscribe(lastMeeting => {
+      this.service.getAppUsersList().subscribe(AppUsersList => {
+        let appUser = AppUsersList.find(appUser => appUser.id === this.currentSpeaker.id);
+        this.service.getParticipationBymeetingIdAndAppuserId(lastMeeting.id, this.currentSpeaker.id).subscribe(participation => {
+          let participationToUpdate =
+            {
+              "appUser": appUser,
+              "id": participation.id,
+              "meeting": lastMeeting,
+              "speakingDuration": speakingDuration,
+              "timeKeeper": this.currentSpeaker.timeKeeper
+            };
+          this.service.updateParticipation(participationToUpdate).subscribe()
+        })
+      })
+    })
+  }
 }

@@ -7,22 +7,31 @@ import {AppUserMeeting} from "./appUser";
 export class UsersListService {
   appUsersMeetingList: AppUserMeeting[] = [];
   appUsersMeetingListIsPart : AppUserMeeting[] = [];
+  appUsersMeetingListIsNotPart : AppUserMeeting[] = [];
   meetingStarted = false;
-  index : number =0;
+  index : number = 0;
   lastUser = false ;
-
-
+  startChrono = new Date();
+  stopChrono = new Date();
 
   constructor() {
   }
   usersListRandomlySorted(){
     this.appUsersMeetingList.sort(()=> Math.random() - 0.5);
   }
-  splitIntoParticipantNot(){
-    // while et slice pour injecter la liste des participants dans la liste des appUsersMeetingList
-    for ( let appUserMeeting  : this.appUsersMeetingList){
 
+  splitParticipationOrNot(){
+    // while et slice pour injecter la liste des participants dans la liste des appUsersMeetingList
+    while(this.appUsersMeetingList.length>0){
+      if(this.appUsersMeetingList[0].isParticipant){
+        this.appUsersMeetingListIsPart.push(this.appUsersMeetingList[0]);
+        this.appUsersMeetingList.splice(0, 1)
+      } else {
+        this.appUsersMeetingListIsNotPart.push(this.appUsersMeetingList[0]);
+        this.appUsersMeetingList.splice(0, 1)
+      }
     }
+    this.appUsersMeetingList = this.appUsersMeetingListIsPart;
   }
 
 
