@@ -15,7 +15,7 @@ export class MeetingBoardComponent implements OnInit {
     id: 0,
     name: "test",
     isParticipant: true,
-    isSpeaking: true,
+    isSpeaking: 0,
     timeKeeper: true,
       } ;
   //index : number =0;

@@ -35,7 +35,7 @@ export class UsersListComponent implements OnInit {
                   "id": appUser.id,
                   "name": appUser.name,
                   "isParticipant": false,
-                  "isSpeaking": false,
+                  "isSpeaking": 0,
                   "timeKeeper": false,
                 })
               }
