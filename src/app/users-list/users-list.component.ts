@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {Service} from "../service";
 import {AppUser, AppUserMeeting} from "../appUser";
 import {DatePipe} from "@angular/common";
+import {UsersListService} from "../users-list.service";
 
 @Component({
   selector: 'app-users-list',
@@ -11,13 +12,14 @@ import {DatePipe} from "@angular/common";
 
 })
 export class UsersListComponent implements OnInit {
-  appUsersMeetingList: AppUserMeeting[] = [];
+  appUsersMeetingList: AppUserMeeting[] = this.usersListService.appUsersMeetingList;
   dateMeeting: string | null | undefined;
   private appUserMeeting: AppUserMeeting | undefined
 
   constructor(
     private service: Service,
     private datePipe: DatePipe,
+    private usersListService : UsersListService,
   ) {
   }
 
@@ -29,7 +31,7 @@ export class UsersListComponent implements OnInit {
           // inject the list of all users actives into a new list of new objects : AppUser
           this.service.getAppUsersList().subscribe(appUsersList => {
               for (let appUser of appUsersList) {
-                this.appUsersMeetingList.push({
+                this.usersListService.appUsersMeetingList.push({
                   "id": appUser.id,
                   "name": appUser.name,
                   "isParticipant": false,
@@ -42,7 +44,7 @@ export class UsersListComponent implements OnInit {
             // Update "isParticpant" and "isTimeKeeper" in the appUsersMeetingList from th BDD
               // @ts-ignore
               for (let participation of participationList) {
-                this.appUserMeeting = this.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id === participation.appUser.id)
+                this.appUserMeeting = this.usersListService.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id === participation.appUser.id)
                 // @ts-ignore
                 this.appUserMeeting.isParticipant = true
                 // @ts-ignore
