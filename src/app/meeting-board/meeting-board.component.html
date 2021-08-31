@@ -6,9 +6,21 @@
   <div class="container mr-0">
     <div class="row justify-content-center">
       <div class="mt-5">
-        <button *ngIf="meetingStarted == false" (click)="startMeeting()" class="startMeetingButton mt-5">Start a meeting</button>
-
+        <button *ngIf="this.usersListService.meetingStarted == false" (click)="startMeeting()" class="startMeetingButton mt-5">Start a meeting</button>
       </div>
+
+      <div *ngIf="this.usersListService.meetingStarted == true" class="mt-5">
+        {{this.currentSpeaker.name}}
+      </div>
+
+
+
+      <div class="mt-5">
+        <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false"  (click)="nextSpeaker()" class="startMeetingButton mt-5">Next</button>
+      </div>
+
+
+
     </div>
   </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
