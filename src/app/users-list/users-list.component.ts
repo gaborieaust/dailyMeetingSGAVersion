@@ -1,20 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 import {Service} from "../service";
 import {AppUser, AppUserMeeting} from "../appUser";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.css']
+  styleUrls: ['./users-list.component.css'],
+  providers: [DatePipe]
+
 })
 export class UsersListComponent implements OnInit {
   appUsersMeetingList: AppUserMeeting[] = [];
-  dateMeeting: Date | undefined;
-  private appUserMeeting: AppUserMeeting | undefined;
+  dateMeeting: string | null | undefined;
+  private appUserMeeting: AppUserMeeting | undefined
 
   constructor(
     private service: Service,
-
+    private datePipe: DatePipe,
   ) {
   }
 
@@ -34,7 +37,7 @@ export class UsersListComponent implements OnInit {
                   "timeKeeper": false,
                 })
               }
-              this.dateMeeting = lastMeeting.date
+            this.dateMeeting = this.datePipe.transform(lastMeeting.date, 'dd/MM/yyyy');
 
             // Update "isParticpant" and "isTimeKeeper" in the appUsersMeetingList from th BDD
               // @ts-ignore
