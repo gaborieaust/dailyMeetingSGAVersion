@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UsersListService} from "../users-list.service";
 import {AppUserMeeting} from "../appUser";
 import {Service} from "../service";
+import {Observable, Subscription, timer} from "rxjs";
 
 @Component({
   selector: 'app-meeting-board',
@@ -18,7 +19,10 @@ export class MeetingBoardComponent implements OnInit {
     isSpeaking: 0,
     timeKeeper: true,
       } ;
-  //index : number =0;
+  currTime: number = 0;
+  obsTimer: Observable<number> = timer(0,1000);
+  subscription: Subscription | undefined
+
   constructor(
     private service : Service,
     public usersListService : UsersListService
@@ -41,13 +45,16 @@ export class MeetingBoardComponent implements OnInit {
     // afficher le premier participant dans le componant meeting board
     this.currentSpeaker = this.usersListService.appUsersMeetingList[this.usersListService.index];
 
+    this.subscription = this.obsTimer.subscribe(currTime => this.currTime = currTime)
     this.usersListService.startChrono = new Date();
   }
 
   nextSpeaker () {
 
     // Récupérer le dernier speaking Duration
+    this.subscription?.unsubscribe()
     this.usersListService.stopChrono = new Date();
+
     let speakingDuration = Math.round((this.usersListService.stopChrono.getTime()
       - this.usersListService.startChrono.getTime())/1000)
 
@@ -84,6 +91,7 @@ export class MeetingBoardComponent implements OnInit {
           }
 
           // Réinitialiser le chrono pour le prochain participant
+          this.subscription = this.obsTimer.subscribe(currTime => this.currTime = currTime)
           this.usersListService.startChrono = new Date();
         })
       })
@@ -94,7 +102,9 @@ export class MeetingBoardComponent implements OnInit {
   endMeeting(){
 
     // Récupérer le dernier speaking Duration
+    this.subscription?.unsubscribe()
     this.usersListService.stopChrono = new Date();
+
     let speakingDuration = Math.round((this.usersListService.stopChrono.getTime()
       - this.usersListService.startChrono.getTime())/1000)
 

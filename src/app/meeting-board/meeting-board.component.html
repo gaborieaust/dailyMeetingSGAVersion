@@ -4,25 +4,37 @@
 </head>
 <body>
   <div class="container mr-0">
-    <div class="row justify-content-center">
-      <div class="mt-5">
-        <button *ngIf="this.usersListService.meetingStarted == false && this.usersListService.lastUser == false" (click)="startMeeting()" class="startMeetingButton mt-5">Start a meeting</button>
-      </div>
-
-      <div *ngIf="this.usersListService.meetingStarted == true" class="mt-5">
-        {{this.currentSpeaker.name}}
-      </div>
-      <div class="mt-5">
-        <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false"  (click)="nextSpeaker()" class="startMeetingButton mt-5">Next</button>
-      </div>
-      <div class="mt-5">
-        <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == true"  (click)="endMeeting()" class="startMeetingButton mt-5">End Meeting</button>
-      </div>
-      <div class="mt-5">
-        <button *ngIf="this.usersListService.meetingStarted== false && this.usersListService.lastUser == true"  class="startMeetingButton mt-5">Meeting Finished</button>
+    <div class="justify-content-center">
+      <div class="d-flex flex-column align-items-center">
+        <div class="mt-5">
+          <button *ngIf="this.usersListService.meetingStarted == false && this.usersListService.lastUser == false" (click)="startMeeting()" class="startMeetingButton mt-5">Start a meeting</button>
+        </div>
+        <div>
+          <div *ngIf="this.usersListService.meetingStarted == true" class="border border-dark px-5 py-2 bg-light text-center mt-5">
+            <div class="h3">
+              <img src="assets/micro2.png" id="logoMicro"> => {{this.currentSpeaker.name}}
+            </div>
+            <div *ngIf="currTime<10" class="mt-2">
+              {{currTime}}
+            </div>
+            <div *ngIf="currTime>=10" class="mt-2">
+              {{currTime}}
+            </div>
+          </div>
+        </div>
+        <div>
+          <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false"  (click)="nextSpeaker()" class="startMeetingButton mt-5">Next</button>
+        </div>
+        <div>
+          <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == true"  (click)="endMeeting()" class="startMeetingButton mt-5">End Meeting</button>
+        </div>
+        <div class="mt-5">
+          <button *ngIf="this.usersListService.meetingStarted== false && this.usersListService.lastUser == true"  class="startMeetingButton mt-5">Meeting Finished</button>
+        </div>
       </div>
     </div>
   </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -32,5 +44,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+<script src="lib/easytimer/dist/easytimer.min.js"></script>
+<script>
+  var timerInstance = new easytimer.Timer();
+</script>
+
 </body>
 

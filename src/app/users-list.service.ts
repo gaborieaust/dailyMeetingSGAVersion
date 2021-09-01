@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AppUserMeeting} from "./appUser";
 
 @Injectable({
@@ -6,24 +6,25 @@ import {AppUserMeeting} from "./appUser";
 })
 export class UsersListService {
   appUsersMeetingList: AppUserMeeting[] = [];
-  appUsersMeetingListIsPart : AppUserMeeting[] = [];
-  appUsersMeetingListIsNotPart : AppUserMeeting[] = [];
+  appUsersMeetingListIsPart: AppUserMeeting[] = [];
+  appUsersMeetingListIsNotPart: AppUserMeeting[] = [];
   meetingStarted = false;
-  index : number = 0;
-  lastUser = false ;
+  index: number = 0;
+  lastUser = false;
   startChrono = new Date();
   stopChrono = new Date();
 
   constructor() {
   }
-  usersListRandomlySorted(){
-    this.appUsersMeetingList.sort(()=> Math.random() - 0.5);
+
+  usersListRandomlySorted() {
+    this.appUsersMeetingList.sort(() => Math.random() - 0.5);
   }
 
-  splitParticipationOrNot(){
+  splitParticipationOrNot() {
     // while et slice pour injecter la liste des participants dans la liste des appUsersMeetingList
-    while(this.appUsersMeetingList.length>0){
-      if(this.appUsersMeetingList[0].isParticipant){
+    while (this.appUsersMeetingList.length > 0) {
+      if (this.appUsersMeetingList[0].isParticipant) {
         this.appUsersMeetingListIsPart.push(this.appUsersMeetingList[0]);
         this.appUsersMeetingList.splice(0, 1)
       } else {
@@ -33,6 +34,4 @@ export class UsersListService {
     }
     this.appUsersMeetingList = this.appUsersMeetingListIsPart;
   }
-
-
 }
