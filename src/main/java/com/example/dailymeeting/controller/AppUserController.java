@@ -21,33 +21,30 @@ public class AppUserController {
     }
 
     // Récupérer la liste de toutes les utilisateurs de l'application
-
     @GetMapping
     public List<AppUser> getAllAppUser() {
         return appUserRepository.findAll();
     }
 
+    // Récupérer la liste de toutes les utilisateurs en activité
     @GetMapping("/active")
     public List<AppUser> getAllActiveAppUser() {
         return appUserRepository.findByIsActiveTrue();
     }
 
     // Récupérer un user
-
     @GetMapping("/{id}")
     public Optional<AppUser> getAppUser(@PathVariable Long id) {
         return appUserRepository.findById(id);
     }
 
-        // Supprimer un user
-
+    // Supprimer un user
     @DeleteMapping("/{id}")
     public void deleteAppUser(@PathVariable Long id) {
         appUserRepository.deleteById(id);
     }
 
     // Créer un user
-
     @PostMapping
     public void createAppUser(@RequestBody AppUser newAppUser) {
         appUserRepository.save(newAppUser);

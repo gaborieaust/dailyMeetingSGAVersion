@@ -38,7 +38,7 @@ public class ParticipationController {
     }
 
     @PostMapping
-    public void createParticipation(@RequestBody Participation newParticipation){
+    public void createParticipation(@RequestBody Participation newParticipation) throws InterruptedException {
         participationRepository.save(newParticipation);
     }
 

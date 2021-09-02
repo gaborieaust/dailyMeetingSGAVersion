@@ -12,7 +12,8 @@ import java.util.List;
 public class SwitchAppUser {
     ParticipationRepository participationRepository;
 
-    // renvoie le participant suivant de la liste des ready randomisée
+    // Renvoie le participant suivant de la liste des ready randomisée
+    // Edit (depuis Angular) : fonctionnalité gérée dans le Front
     public AppUser switchAppUser (AppUser currentAppUser, List<AppUser> appUserList ) {
         int currentAppUserIndex = appUserList.indexOf(currentAppUser);
         return appUserList.get(currentAppUserIndex + 1);
