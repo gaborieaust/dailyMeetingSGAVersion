@@ -9,6 +9,7 @@ import {Router, RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { InitializationComponent } from './initialization/initialization.component';
 import { MainBoardComponent } from './main-board/main-board.component';
+import {AddUserDuringMeetingComponent} from "./adduserduringmeeting/add-user-during-meeting.component";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MainBoardComponent } from './main-board/main-board.component';
     MeetingBoardComponent,
     InitializationComponent,
     MainBoardComponent,
+    AddUserDuringMeetingComponent,
 
   ],
   imports: [

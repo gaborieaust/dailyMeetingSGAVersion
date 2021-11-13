@@ -28,6 +28,6 @@ export class AddUserDuringMeetingComponent implements OnInit {
     appUserMeeting.isParticipant=true;
     this.usersListService.appUsersMeetingListIsPart.push(appUserMeeting);
     this.usersListService.appUsersMeetingListIsNotPart.splice(this.usersListService.appUsersMeetingListIsNotPart.indexOf(appUserMeeting),1)
-    this.usersListService.participate(appUserMeeting);
+    //this.usersListService.participate(appUserMeeting);
   }
 }
