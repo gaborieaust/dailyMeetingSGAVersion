@@ -10,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { InitializationComponent } from './initialization/initialization.component';
 import { MainBoardComponent } from './main-board/main-board.component';
 import {AddUserDuringMeetingComponent} from "./adduserduringmeeting/add-user-during-meeting.component";
+import {SetupDurationComponent} from "./setup-duration/setup-duration.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {AddUserDuringMeetingComponent} from "./adduserduringmeeting/add-user-dur
     InitializationComponent,
     MainBoardComponent,
     AddUserDuringMeetingComponent,
+    SetupDurationComponent,
 
   ],
   imports: [

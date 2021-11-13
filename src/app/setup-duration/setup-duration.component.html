@@ -5,13 +5,13 @@
   <form >
     <tr>Individual speaking time  </tr>
 
-  <input (keyup)="this.usersListService.totalTiming(minutes.valueAsNumber,seconds.valueAsNumber)" type="number" #minutes [defaultValue]="0" >
+  <input (keyup)="this.usersListService.totalTimingMinutes" type="number" #minutes [defaultValue]="0" >
     minutes
-  <input (keyup)="this.usersListService.totalTiming(minutes.valueAsNumber,seconds.valueAsNumber)" type="number" #seconds [defaultValue]="0">
+  <input (keyup)="this.usersListService.totalTimingSeconds" type="number" #seconds [defaultValue]="0">
   seconds
   <div id = totalMeetingDuration>
     Total meeting duration <time></time>
-    <p>{{this.usersListService.minutesToDisplay}} minutes {{this.usersListService.secondsToDisplay}} seconds</p>
+    <p>{{this.usersListService.totalTimingMinutes}} minutes {{this.usersListService.totalTimingSeconds}} seconds</p>
     <p></p>
   </div>
   </form>

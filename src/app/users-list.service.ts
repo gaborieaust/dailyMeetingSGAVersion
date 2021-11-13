@@ -13,7 +13,9 @@ export class UsersListService {
   lastUser = false;
   startChrono = new Date();
   stopChrono = new Date();
-
+  totalTimingMinutes : number =0;
+  totalTimingSeconds : number | undefined;
+  setupDuration=true;
   constructor() {
   }
 
