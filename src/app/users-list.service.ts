@@ -13,11 +13,14 @@ export class UsersListService {
   lastUser = false;
   startChrono = new Date();
   stopChrono = new Date();
-  totalTimingMinutes : number =0;
-  totalTimingSeconds : number | undefined;
-  setupDuration=true;
+  totalTimingMinutes: number = 0;
+  totalTimingSeconds: number | undefined;
+  setupDuration = true;
+  numberParticipants: number = 0;
+
   constructor() {
   }
+
 
   usersListRandomlySorted() {
     this.appUsersMeetingList.sort(() => Math.random() - 0.5);
@@ -35,5 +38,17 @@ export class UsersListService {
       }
     }
     this.appUsersMeetingList = this.appUsersMeetingListIsPart;
+  }
+
+  // @ts-ignore
+  totalMinute($event: any) {  //count the numbers of participants
+    for (const appUser of this.appUsersMeetingList) {
+      if (appUser.isParticipant === true) {
+        this.numberParticipants = this.numberParticipants + 1
+      }
+    }
+
+    this.totalTimingMinutes = $event.target.value * this.numberParticipants * 60;
+    this.numberParticipants = 0;
   }
 }

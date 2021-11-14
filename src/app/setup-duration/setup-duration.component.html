@@ -5,7 +5,7 @@
   <form >
     <tr>Individual speaking time  </tr>
 
-  <input (keyup)="this.usersListService.totalTimingMinutes" type="number" #minutes [defaultValue]="0" >
+  <input (keyup)="this.usersListService.totalMinute($event)" type="number" #minutes [defaultValue]="0" >
     minutes
   <input (keyup)="this.usersListService.totalTimingSeconds" type="number" #seconds [defaultValue]="0">
   seconds
