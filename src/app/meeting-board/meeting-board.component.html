@@ -15,7 +15,7 @@
               <img src="assets/micro2.png" id="logoMicro"> => {{this.currentSpeaker.name}}
             </div>
               <countdown #countdown [config]="{ leftTime: totalSpeakingDuration, demand: true}" ></countdown>
-            <div>
+            <div *ngIf ="this.usersListService.appUsersMeetingListIsPart.indexOf(this.currentSpeaker) ==0 ">>
               <button (click)="start()" class="btn btn-link btn-sm">Lancer le chronomètre</button>
             </div>
 
