@@ -70,6 +70,7 @@ export class UsersListComponent implements OnInit {
         this.service.createParticipation(participationToCreate).subscribe()
       })
       appUserMeeting.isParticipant = true;
+      this.usersListService.ComputeTotalTime();
     })
   }
 
@@ -83,6 +84,7 @@ export class UsersListComponent implements OnInit {
         participation => this.service.deleteParticipation(participation.id).subscribe()))
     appUserMeeting.isParticipant = false
     appUserMeeting.timeKeeper = false
+    this.usersListService.ComputeTotalTime();
   }
 
   timeKeeper(appUserMeeting: AppUserMeeting) {

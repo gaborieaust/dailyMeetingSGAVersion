@@ -7,11 +7,11 @@
 
   <input (keyup)="this.usersListService.totalMinute($event)" type="number" #minutes [defaultValue]="0" >
     minutes
-  <input (keyup)="this.usersListService.totalTimingSeconds" type="number" #seconds [defaultValue]="0">
+  <input (keyup)="this.usersListService.totalSeconds($event)" type="number" #seconds [defaultValue]="0">
   seconds
   <div id = totalMeetingDuration>
     Total meeting duration <time></time>
-    <p>{{this.usersListService.totalTimingMinutes}} minutes {{this.usersListService.totalTimingSeconds}} seconds</p>
+    <p>{{this.usersListService.minutes}} minutes {{this.usersListService.seconds}} seconds</p>
     <p></p>
   </div>
   </form>
