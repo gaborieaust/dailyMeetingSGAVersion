@@ -12,6 +12,7 @@ import {Observable, Subscription, timer} from "rxjs";
 export class MeetingBoardComponent implements OnInit {
   //lastUser = false ;
   //meetingStarted = false;
+  totalSpeakingDuration : number =0;
   currentSpeaker : AppUserMeeting = {
     id: 0,
     name: "test",
@@ -47,6 +48,7 @@ export class MeetingBoardComponent implements OnInit {
 
     this.subscription = this.obsTimer.subscribe(currTime => this.currTime = currTime)
     this.usersListService.startChrono = new Date();
+    this.totalSpeakingDuration =+this.usersListService.totalIntoSeconds+ +this.usersListService.totalTimingMinutesIntoSeconds
   }
 
   nextSpeaker () {

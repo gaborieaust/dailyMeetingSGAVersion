@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import{CountdownModule} from 'ngx-countdown'
 import { AppComponent } from './app.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { UsersListComponent } from './users-list/users-list.component';
@@ -26,6 +26,7 @@ import {SetupDurationComponent} from "./setup-duration/setup-duration.component"
   ],
   imports: [
     HttpClientModule,
+    CountdownModule,
     BrowserModule,
     RouterModule.forRoot([
       {path:'', component : InitializationComponent},

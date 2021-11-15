@@ -20,6 +20,9 @@
             <div *ngIf="currTime>=10" class="mt-2">
               {{currTime}}
             </div>
+            <div class="card-body">
+              <countdown [config]="{ leftTime: totalSpeakingDuration.valueOf() }"></countdown>
+            </div>
           </div>
         </div>
         <div>
