@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {UsersListService} from "../users-list.service";
 import {AppUserMeeting} from "../appUser";
 import {Service} from "../service";
 import {Observable, Subscription, timer} from "rxjs";
+import {CountdownComponent} from "ngx-countdown";
 
 @Component({
   selector: 'app-meeting-board',
@@ -10,8 +11,11 @@ import {Observable, Subscription, timer} from "rxjs";
   styleUrls: ['./meeting-board.component.css']
 })
 export class MeetingBoardComponent implements OnInit {
+  @ViewChild('countdown') counter: CountdownComponent | undefined;
+
   //lastUser = false ;
   //meetingStarted = false;
+  launchTheChrono = true;
   totalSpeakingDuration : number =0;
   currentSpeaker : AppUserMeeting = {
     id: 0,
@@ -48,7 +52,11 @@ export class MeetingBoardComponent implements OnInit {
 
     this.subscription = this.obsTimer.subscribe(currTime => this.currTime = currTime)
     this.usersListService.startChrono = new Date();
-    this.totalSpeakingDuration =+this.usersListService.totalIntoSeconds+ +this.usersListService.totalTimingMinutesIntoSeconds
+
+    // afficher le countdown par participant
+    this.totalSpeakingDuration =+this.usersListService.totalIntoSeconds+ +this.usersListService.totalTimingMinutesIntoSeconds;
+    this.resetTimer();
+    this.start();
   }
 
   nextSpeaker () {
@@ -95,11 +103,22 @@ export class MeetingBoardComponent implements OnInit {
           // Réinitialiser le chrono pour le prochain participant
           this.subscription = this.obsTimer.subscribe(currTime => this.currTime = currTime)
           this.usersListService.startChrono = new Date();
+          console.log(this.totalSpeakingDuration);
+          this.resetTimer();
+          this.start();
         })
       })
     })
     //localStorage.setItem(this.usersListService.index);
   }
+  //reset du time
+  resetTimer() {
+    this.counter?.restart();
+  }
+  start() {
+    this.counter?.begin()
+  }
+
 
   endMeeting(){
 

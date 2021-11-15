@@ -10,23 +10,21 @@
           <button *ngIf="this.usersListService.meetingStarted == false && this.usersListService.lastUser == false" (click)="startMeeting()" class="startMeetingButton mt-5">Start a meeting</button>
         </div>
         <div>
-          <div *ngIf="this.usersListService.meetingStarted == true" class="border border-dark px-5 py-2 bg-light text-center mt-5">
+          <div *ngIf="this.usersListService.meetingStarted == true" class="border border-dark px-5 py-2 bg-light text-center mt-5" >
             <div class="h3">
               <img src="assets/micro2.png" id="logoMicro"> => {{this.currentSpeaker.name}}
             </div>
-            <div *ngIf="currTime<10" class="mt-2">
-              {{currTime}}
+              <countdown #countdown [config]="{ leftTime: totalSpeakingDuration, demand: true}" ></countdown>
+            <div>
+              <button (click)="start()" class="btn btn-link btn-sm">Lancer le chronomètre</button>
             </div>
-            <div *ngIf="currTime>=10" class="mt-2">
-              {{currTime}}
-            </div>
-            <div class="card-body">
-              <countdown [config]="{ leftTime: totalSpeakingDuration.valueOf() }"></countdown>
-            </div>
+
           </div>
         </div>
+
+
         <div>
-          <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false"  (click)="nextSpeaker()" class="startMeetingButton mt-5">Next</button>
+          <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false" (click)="nextSpeaker()" class="startMeetingButton mt-5">Next</button>
         </div>
         <div>
           <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == true"  (click)="endMeeting()" class="startMeetingButton mt-5">End Meeting</button>
