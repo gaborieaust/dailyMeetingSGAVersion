@@ -119,6 +119,9 @@ export class MeetingBoardComponent implements OnInit {
     this.counter?.begin()
   }
 
+  Pause(){
+    this.counter?.pause()
+  }
 
   endMeeting(){
 
