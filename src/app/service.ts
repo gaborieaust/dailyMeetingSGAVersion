@@ -46,6 +46,9 @@ export class Service {
   deleteParticipation(id : number) {
     return this.http.delete(this.baseAPIUrl+ 'participation/' +  id)
   }
-
+  createUser(appUser : AppUser){
+    console.log(appUser)
+    return this.http.post<AppUser>(this.baseAPIUrl+'user',appUser)
+  }
 
 }

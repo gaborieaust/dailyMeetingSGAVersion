@@ -11,6 +11,7 @@ import { InitializationComponent } from './initialization/initialization.compone
 import { MainBoardComponent } from './main-board/main-board.component';
 import {AddUserDuringMeetingComponent} from "./adduserduringmeeting/add-user-during-meeting.component";
 import {SetupDurationComponent} from "./setup-duration/setup-duration.component";
+import { NewAppUserComponent } from './new-app-user/new-app-user.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {SetupDurationComponent} from "./setup-duration/setup-duration.component"
     MainBoardComponent,
     AddUserDuringMeetingComponent,
     SetupDurationComponent,
+    NewAppUserComponent,
 
   ],
   imports: [
