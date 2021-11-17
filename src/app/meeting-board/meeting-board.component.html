@@ -18,12 +18,16 @@
               <img src="assets/micro2.png" id="logoMicro"> => {{this.currentSpeaker.name}}
             </div>
               <countdown #countdown [config]="{ leftTime: totalSpeakingDuration, demand: true}" ></countdown>
-            <div *ngIf="this.usersListService.appUsersMeetingListIsPart.indexOf(this.currentSpeaker) ===0 ">
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="start()"> Start the timer </button>
+            <div >
+              <button *ngIf="this.startMeetingButton === true " class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="start()"> Start the timer </button>
             </div>
             <p></p>
               <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="Pause()"> Pause </button>
+            <div *ngIf="displayAfterBreak  === false ">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="startAfterBreak()"> Start</button>
             </div>
+            </div>
+
         </div>
 
 

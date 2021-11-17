@@ -17,7 +17,11 @@ export class SetupDurationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+// to handle the fact that we should limit the value choosed by the users.
+  handleChange($event: any) {
+    if ($event.target.value < 0) $event.target.value = 0;
+    if ($event.target.value > 59) $event.target.value= 59;
+  }
 
   onEnter(value : string) { // without type info
     // @ts-ignore

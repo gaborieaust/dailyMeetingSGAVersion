@@ -12,7 +12,8 @@ import {CountdownComponent} from "ngx-countdown";
 })
 export class MeetingBoardComponent implements OnInit {
   @ViewChild('countdown') counter: CountdownComponent | undefined;
-
+  displayAfterBreak = true;
+  startMeetingButton =true ;
   //lastUser = false ;
   //meetingStarted = false;
   launchTheChrono = true;
@@ -57,6 +58,7 @@ export class MeetingBoardComponent implements OnInit {
     this.totalSpeakingDuration =+this.usersListService.totalIntoSeconds+ +this.usersListService.totalTimingMinutesIntoSeconds;
     this.resetTimer();
     this.start();
+    this.startMeetingButton =true ;
   }
 
   nextSpeaker () {
@@ -117,10 +119,17 @@ export class MeetingBoardComponent implements OnInit {
   }
   start() {
     this.counter?.begin()
+    this.startMeetingButton = false;
   }
 
   Pause(){
     this.counter?.pause()
+    this.displayAfterBreak = false;
+  }
+
+  startAfterBreak(){
+    this.counter?.begin();
+    this.displayAfterBreak = true;
   }
 
   endMeeting(){
