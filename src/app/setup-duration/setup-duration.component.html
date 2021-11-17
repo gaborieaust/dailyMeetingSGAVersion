@@ -7,7 +7,7 @@
 
   <input (keyup)="this.usersListService.totalMinute($event);handleChange($event)" type="number" #minutes [defaultValue]="0"  >
     minutes
-  <input (keyup)="this.usersListService.totalSeconds($event)" type="number" #seconds [defaultValue]="0">
+  <input (keyup)="this.usersListService.totalSeconds($event);handleChange($event)" type="number" #seconds [defaultValue]="0">
   seconds
   <div id = totalMeetingDuration>
     Total meeting duration <time></time>
