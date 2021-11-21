@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Service} from "../service";
+import {UsersListService} from "../users-list.service";
+import {AppUser} from "../appUser";
 
 @Component({
   selector: 'app-initialization',
@@ -8,9 +10,10 @@ import {Service} from "../service";
 })
 export class InitializationComponent implements OnInit {
 
-  constructor(private service: Service,) {
+  constructor(private service: Service,
+              private userlistservice: UsersListService) {
   }
-
+  newUser : AppUser | undefined;
   // présente le boutton permettant d'initaliser le meeting
   // au clic: vérifie en bdd la présence ou non d'un meeting pour la date du jour
   // si oui => route vers user-list-component
@@ -41,4 +44,6 @@ export class InitializationComponent implements OnInit {
     }).subscribe()
     location.assign('http://localhost:4200/meeting/')
   }
+
+
 }

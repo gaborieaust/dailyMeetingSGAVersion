@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AppUserMeeting} from "./appUser";
+import {UsersListComponent} from "./users-list/users-list.component";
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,10 @@ export class UsersListService {
   setupDuration = true;
   minutes : number  = 0;
   seconds : number =0;
-  constructor()
-  {
-  }
+  constructor(
+  )
+  { }
+
 
 
   usersListRandomlySorted() {

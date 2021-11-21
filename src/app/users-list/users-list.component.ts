@@ -24,7 +24,6 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.service.getLastMeeting().subscribe(lastMeeting =>
       this.service.getAllParticipationsByMeetingId(lastMeeting.id).subscribe(
         participationList =>
@@ -39,6 +38,7 @@ export class UsersListComponent implements OnInit {
                   "timeKeeper": false,
                 })
               }
+              console.log(this.appUsersMeetingList);
             this.dateMeeting = this.datePipe.transform(lastMeeting.date, 'dd/MM/yyyy');
 
             // Update "isParticpant" and "isTimeKeeper" in the appUsersMeetingList from th BDD
