@@ -1,6 +1,7 @@
 package com.example.dailymeeting.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +18,7 @@ public class AppUser {
     @OneToMany//(mappedBy = "Participation")
     private List<Participation> participationList;
     private String name;
+    @JsonIgnore
     private boolean isActive;
     //private List<UserRole> roles;
 
@@ -46,12 +48,16 @@ public class AppUser {
         this.name = name;
     }
 
-    public boolean isActive() {
+    public AppUser(boolean isActive) {
+        this.isActive = isActive;
+    }
+    @JsonProperty("isActive")
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public List<Participation> getParticipationList() {
