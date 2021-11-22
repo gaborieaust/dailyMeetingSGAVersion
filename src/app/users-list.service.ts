@@ -1,10 +1,17 @@
 import {Injectable} from '@angular/core';
 import {AppUserMeeting} from "./appUser";
 import {UsersListComponent} from "./users-list/users-list.component";
+import {Service} from "./service";
+import {DatePipe} from "@angular/common";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+
 })
+
+
+
+
 export class UsersListService {
   numberParticipants:number =0;
   appUsersMeetingList: AppUserMeeting[] = [];
@@ -20,7 +27,11 @@ export class UsersListService {
   setupDuration = true;
   minutes : number  = 0;
   seconds : number =0;
+  dateMeeting: string | null | undefined;
+  appUserMeeting: AppUserMeeting | undefined
   constructor(
+    private service: Service,
+    private datePipe: DatePipe
   )
   { }
 
@@ -78,4 +89,33 @@ export class UsersListService {
     this.seconds = totalTimingintoSec - this.minutes * 60;
     totalTimingintoSec = 0 ;
   }
+  initialisationUsersList() {
+    this.service.getLastMeeting().subscribe(lastMeeting =>
+      this.service.getAllParticipationsByMeetingId(lastMeeting.id).subscribe(
+        participationList =>
+          // inject the list of all users actives into a new list of new objects : AppUser
+          this.service.getAppUsersList().subscribe(appUsersList => {
+              for (let appUser of appUsersList) {
+                this.appUsersMeetingList.push({
+                  "id": appUser.id,
+                  "name": appUser.name,
+                  "isParticipant": false,
+                  "isSpeaking": 0,
+                  "timeKeeper": false,
+                })
+              }
+              this.dateMeeting = this.datePipe.transform(lastMeeting.date, 'dd/MM/yyyy');
+              // Update "isParticpant" and "isTimeKeeper" in the appUsersMeetingList from th BDD
+              // @ts-ignore
+              for (let participation of participationList) {
+                this.appUserMeeting = this.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id === participation.appUser.id)
+                // @ts-ignore
+                this.appUserMeeting.isParticipant = true
+                // @ts-ignore
+                this.appUserMeeting.timeKeeper = participation.timeKeeper
+              }
+            }
+          )))
+  }
+
 }

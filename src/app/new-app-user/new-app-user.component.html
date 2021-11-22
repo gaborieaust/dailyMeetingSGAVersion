@@ -1,1 +1,10 @@
-<button (click)="createNewUser()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">TEST</button>
+<form  #monForm=ngForm (submit)="createNewUser(monForm)">
+<div>
+  Nom : <input type=text name=nom [ngModel]=nom>
+</div>
+  <button type="submit">
+    Ajouter
+  </button>
+
+</form>
+

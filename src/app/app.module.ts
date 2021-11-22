@@ -12,6 +12,11 @@ import { MainBoardComponent } from './main-board/main-board.component';
 import {AddUserDuringMeetingComponent} from "./adduserduringmeeting/add-user-during-meeting.component";
 import {SetupDurationComponent} from "./setup-duration/setup-duration.component";
 import { NewAppUserComponent } from './new-app-user/new-app-user.component';
+import {DatePipe} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,9 +40,14 @@ import { NewAppUserComponent } from './new-app-user/new-app-user.component';
       {path:'auth', component: AuthentificationComponent},
       {path:'meeting', component: MainBoardComponent},
       ]
-    )
+    ),
+    ReactiveFormsModule,
+    FormlyModule.forRoot({ extras: { lazyRender: true } }),
+    FormlyBootstrapModule,
+    NoopAnimationsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

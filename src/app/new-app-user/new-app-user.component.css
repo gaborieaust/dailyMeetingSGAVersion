@@ -1,0 +1,7 @@
+#zonetexte {
+  display:block;
+  width:15%; height:5%;
+  padding:5px; box-sizing:border-box;
+  margin-left: 50px;
+  outline-style: none;
+}

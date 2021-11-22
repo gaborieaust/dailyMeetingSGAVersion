@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Injectable, Input, OnInit, Output} from '@angular/core';
 import {Service} from "../service";
 import {AppUser, AppUserMeeting} from "../appUser";
 import {DatePipe} from "@angular/common";
@@ -11,47 +11,21 @@ import {UsersListService} from "../users-list.service";
   providers: [DatePipe]
 
 })
+
 export class UsersListComponent implements OnInit {
   appUsersMeetingList: AppUserMeeting[] = this.usersListService.appUsersMeetingList;
   dateMeeting: string | null | undefined;
-  private appUserMeeting: AppUserMeeting | undefined
+   appUserMeeting: AppUserMeeting | undefined
 
   constructor(
     private service: Service,
-    private datePipe: DatePipe,
+    public datePipe: DatePipe,
     public usersListService : UsersListService,
   ) {
   }
 
   ngOnInit(): void {
-    this.service.getLastMeeting().subscribe(lastMeeting =>
-      this.service.getAllParticipationsByMeetingId(lastMeeting.id).subscribe(
-        participationList =>
-          // inject the list of all users actives into a new list of new objects : AppUser
-          this.service.getAppUsersList().subscribe(appUsersList => {
-              for (let appUser of appUsersList) {
-                this.usersListService.appUsersMeetingList.push({
-                  "id": appUser.id,
-                  "name": appUser.name,
-                  "isParticipant": false,
-                  "isSpeaking": 0,
-                  "timeKeeper": false,
-                })
-              }
-              console.log(this.appUsersMeetingList);
-            this.dateMeeting = this.datePipe.transform(lastMeeting.date, 'dd/MM/yyyy');
-
-            // Update "isParticpant" and "isTimeKeeper" in the appUsersMeetingList from th BDD
-              // @ts-ignore
-              for (let participation of participationList) {
-                this.appUserMeeting = this.usersListService.appUsersMeetingList.find(appUserMeeting => appUserMeeting.id === participation.appUser.id)
-                // @ts-ignore
-                this.appUserMeeting.isParticipant = true
-                // @ts-ignore
-                this.appUserMeeting.timeKeeper = participation.timeKeeper
-              }
-            }
-          )))
+    this.usersListService.initialisationUsersList()
   }
 
   // Initialize a "participation" for the AppUserMeeting and change his status "isParticipant" to "true"
