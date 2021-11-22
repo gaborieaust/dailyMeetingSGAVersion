@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import {User} from "../user";
 
 @Component({
   selector: 'app-new-app-user',
@@ -15,6 +16,7 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
   styleUrls: ['./new-app-user.component.css'],
 })
 export class NewAppUserComponent implements OnInit {
+  user : User = {} ;
   test : string | undefined;
   nom : string = "";
   form = new FormGroup({});
@@ -41,16 +43,20 @@ export class NewAppUserComponent implements OnInit {
   }
 
 
-  createNewUser(f: NgForm) {
+  createNewUser() {
 
     // id max
-    console.log(f.value)
+    //console.log(f.value)
+    // @ts-ignore
+    this.nom = this.user.nom
+    console.log (this.user.nom)
     let list = (this.userlistservice.appUsersMeetingList.map(appUser => appUser.id));
     let nextId = Math.max.apply(Math,list)+1
     // Start to create a new user from scratch
+    // @ts-ignore
     let newUser = ({
       "id": nextId,
-      "name": f.value,
+      "name": this.user.nom,
       "isActive": true
     })
     console.log(newUser)
@@ -59,7 +65,7 @@ export class NewAppUserComponent implements OnInit {
     // faire appel à la liste des utilisateurs en cours
     this.userlistservice.appUsersMeetingList.push({
       "id": nextId,
-      "name": f.value,
+      "name": this.nom,
       "isParticipant": false,
       "isSpeaking": 0,
       "timeKeeper": false,

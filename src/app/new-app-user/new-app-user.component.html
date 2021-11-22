@@ -1,6 +1,6 @@
-<form  #monForm=ngForm (submit)="createNewUser(monForm)">
+<form  #monForm=ngForm (submit)="createNewUser()">
 <div>
-  Nom : <input type=text name=nom [ngModel]=nom>
+  Nom : <input type=text name=nom [(ngModel)]=user.nom>
 </div>
   <button type="submit">
     Ajouter
