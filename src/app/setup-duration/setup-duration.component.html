@@ -2,7 +2,7 @@
 <p  >
 
 
-  <form >
+  <form id ="setupduration">
     <tr>Individual speaking time  </tr>
 
   <input (keyup)="this.usersListService.totalMinute($event);handleChange($event)" type="number" #minutes [defaultValue]="0"  >

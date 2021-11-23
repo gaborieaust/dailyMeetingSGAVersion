@@ -10,7 +10,7 @@
     <div class="justify-content-center">
       <div class="d-flex flex-column align-items-center">
         <div class="mt-5">
-          <button *ngIf="this.usersListService.meetingStarted == false && this.usersListService.lastUser == false" (click)="startMeeting()" class="startMeetingButton mt-5">Start a meeting</button>
+          <button *ngIf="this.usersListService.meetingStarted == false && this.usersListService.lastUser == false" (click)="startMeeting()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Start a meeting</button>
         </div>
         <div>
           <div *ngIf="this.usersListService.meetingStarted == true" class="border border-dark px-5 py-2 bg-light text-center mt-5" >
@@ -29,13 +29,12 @@
             </div>
 
         </div>
-
-
         <div>
-          <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false" (click)="nextSpeaker()" class="startMeetingButton mt-5">Next</button>
+          <p></p>
+            <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false" (click)="nextSpeaker()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Next</button>
         </div>
         <div>
-          <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == true"  (click)="endMeeting()" class="startMeetingButton mt-5">End Meeting</button>
+          <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == true"  (click)="endMeeting()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">End Meeting</button>
         </div>
         <div class="mt-5">
           <button *ngIf="this.usersListService.meetingStarted== false && this.usersListService.lastUser == true"  class="startMeetingButton mt-5">Meeting Finished</button>
