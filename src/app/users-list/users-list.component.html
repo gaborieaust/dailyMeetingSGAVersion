@@ -8,6 +8,7 @@
     <h6>Daily meeting from {{usersListService.dateMeeting}}</h6>
   </div>
 </div>
+<button (click)="deleteUser()">Test</button>
 <div class="ml-5">
   <div class="container col-3 float-left">
     <div class="mb-3 text-center">
@@ -21,6 +22,7 @@
           <th><img src="../../assets/tick.jpg"></th>
           <th><img src="../../assets/micro.jpg"></th>
           <th><img src="../../assets/timekeeper.jpg"></th>
+          <th><img src="../../assets/RedCross.PNG"></th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +37,7 @@
           <td><img src="../../assets/timekeeper.jpg" *ngIf="AppUserMeeting.timeKeeper==true">
             <img (click)="timeKeeper(AppUserMeeting)" src="../../assets/emptyTick.jpg"
                  *ngIf="AppUserMeeting.timeKeeper==false"></td>
+          <th><img src="../../assets/RedCross.PNG"></th>
         </tr>
         </tbody>
       </table>

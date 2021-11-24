@@ -51,4 +51,9 @@ export class Service {
     return this.http.post<AppUser>(this.baseAPIUrl+'user',appUser)
   }
 
+  deleteUser(id : number) {
+    console.log(this.baseAPIUrl+ 'user/' +  id)
+    return this.http.delete(this.baseAPIUrl+ 'user/' +id).subscribe()
+    console.log('je viens ici 2')
+  }
 }

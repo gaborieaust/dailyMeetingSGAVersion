@@ -48,6 +48,14 @@ export class UsersListComponent implements OnInit {
     })
   }
 
+  deleteUser(){
+     let Id = 2
+    this.service.deleteUser(Id)
+  }
+
+
+
+
   unParticipate(appUserMeeting
                   :
                   AppUserMeeting
