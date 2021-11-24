@@ -1,5 +1,8 @@
+.table{
+  width: 100%;
+  table-layout: fixed;
+}
 
-
-img{
+img {
   height: 35px;
 }
