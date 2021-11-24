@@ -42,6 +42,7 @@ public class AppUserController {
     @DeleteMapping("/{id}")
     public void deleteAppUser(@PathVariable Long id) {
         appUserRepository.deleteById(id);
+        System.out.println("je viens ici");
     }
 
     // Créer un user

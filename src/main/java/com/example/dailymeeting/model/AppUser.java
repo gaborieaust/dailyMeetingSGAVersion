@@ -10,8 +10,8 @@ import java.util.List;
 public class AppUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
-    @SequenceGenerator(name = "user_id_seq", allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
+    //@SequenceGenerator(name = "user_id_seq", allocationSize = 1)
     private Long id;
 
     @JsonIgnore
