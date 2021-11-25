@@ -5,7 +5,7 @@ const app = express();
 app.use(express.static("./dist/daily-meeting-angular"));
 
 app.get("/*", function (req, res) {
-  res.sendFile("index.html", { root: "dist/daily-meeting-angular" });
+  res.sendFile(res.sendFile(path.join("./dist/daily-meeting-angular", 'index.html'));;
 });
 
 app.listen(process.env.PORT || 8080);
