@@ -9,10 +9,8 @@ import {DatePipe} from "@angular/common";
 
 })
 
-
-
-
 export class UsersListService {
+  addUserOn: boolean = true;
   numberParticipants:number =0;
   appUsersMeetingList: AppUserMeeting[] = [];
   appUsersMeetingListIsPart: AppUserMeeting[] = [];

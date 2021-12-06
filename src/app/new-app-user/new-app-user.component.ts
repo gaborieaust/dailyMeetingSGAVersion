@@ -36,7 +36,7 @@ export class NewAppUserComponent implements OnInit {
 ];
     constructor(
     private service : Service,
-    private userlistservice : UsersListService,
+    public userlistservice : UsersListService,
   ) { }
 
   ngOnInit(): void {
