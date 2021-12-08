@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build --prod --base-href=/index/",
+    "build": "ng build --prod --base-href daily-meeting-angularn",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "heroku-postbuild": "ng build --prod --base-href daily-meeting-angular"
