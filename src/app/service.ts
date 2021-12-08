@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class Service {
 
-  baseAPIUrl = 'http://localhost:8080/api/';
+  baseAPIUrl = 'https://mysterious-atoll-85823.herokuapp.com/api/';
 
   constructor(private http: HttpClient) {
   }
