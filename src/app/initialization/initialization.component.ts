@@ -42,7 +42,7 @@ export class InitializationComponent implements OnInit {
     this.service.createMeeting({
       "date": new Date(Date.now())
     }).subscribe()
-    location.assign('http://localhost:4200/meeting/')
+    location.assign('https://dailymeetingproject.herokuapp.com/meeting')
   }
 
 
