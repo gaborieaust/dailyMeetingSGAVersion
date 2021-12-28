@@ -29,7 +29,7 @@ export class InitializationComponent implements OnInit {
         let dateOfTheDay = today.getFullYear() + '-' + ("0" + (today.getMonth() + 1)).slice(-2) + '-' + today.getDate()
         console.log(dateOfTheDay)
         if (lastMeetingDate == dateOfTheDay) {
-          location.assign('http://localhost:4200/meeting/')
+          location.assign('https://dailymeetingproject.herokuapp.com/meeting')
         }
       }
     )
