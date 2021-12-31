@@ -55,7 +55,7 @@ export class MeetingBoardComponent implements OnInit {
     this.usersListService.startChrono = new Date();
 
     // afficher le countdown par participant
-    this.totalSpeakingDuration =+this.usersListService.totalIntoSeconds+ +this.usersListService.totalTimingMinutesIntoSeconds;
+    this.totalSpeakingDuration =+((this.usersListService.minutes)*60)+ +this.usersListService.seconds;
     this.resetTimer();
     this.start();
     this.startMeetingButton =true ;

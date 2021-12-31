@@ -62,13 +62,6 @@ export class UsersListService {
     this.ComputeTotalTime();
   }
 
-  // I catch the seconds
-  // @ts-ignore
-  totalSeconds($event: any) {
-    this.totalIntoSeconds =0 ;
-    this.totalIntoSeconds = $event.target.value ;
-    this.ComputeTotalTime();
-  }
 
   ComputeTotalTime() {
     // count number of participants
@@ -80,11 +73,11 @@ export class UsersListService {
     }
     let totalTimingintoSec : number =0 ;
     console.log("total minutes into seconds : " + this.totalTimingMinutesIntoSeconds);
-    console.log("total Into Seconds : " + this.totalIntoSeconds);
-    totalTimingintoSec = (+this.totalTimingMinutesIntoSeconds + +this.totalIntoSeconds)*(+this.numberParticipants);
+    totalTimingintoSec = (+this.totalTimingMinutesIntoSeconds  );
     console.log(totalTimingintoSec);
-    this.minutes = Math.floor(totalTimingintoSec / 60);
-    this.seconds = totalTimingintoSec - this.minutes * 60;
+    this.minutes = Math.floor((totalTimingintoSec / this.numberParticipants)/60);
+    console.log (this.minutes)
+    this.seconds = (totalTimingintoSec/ this.numberParticipants) - this.minutes * 60;
     totalTimingintoSec = 0 ;
   }
   initialisationUsersList() {

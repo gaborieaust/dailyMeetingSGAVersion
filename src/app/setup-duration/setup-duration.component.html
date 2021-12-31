@@ -3,17 +3,15 @@
 
 
   <form id ="setupduration">
-    <tr>Individual speaking time  </tr>
+    <tr>Timing meeting </tr>
 
-  <input (keyup)="this.usersListService.totalMinute($event);handleChange($event)" type="number" #minutes [defaultValue]="0"  >
-    minutes
-  <input (keyup)="this.usersListService.totalSeconds($event);handleChange($event)" type="number" #seconds [defaultValue]="0">
-  seconds
-  <div id = totalMeetingDuration>
-    Total meeting duration <time></time>
-    <p>{{this.usersListService.minutes}} minutes {{this.usersListService.seconds}} seconds</p>
-    <p></p>
-  </div>
+    <input (keyup)="this.usersListService.totalMinute($event);handleChange($event)" type="number" #minutes [defaultValue]="0"  >
+      minutes
+    <div id = totalMeetingDuration>
+      Individual speaking time  <time></time>
+      <p>{{this.usersListService.minutes}} minutes {{this.usersListService.seconds}} seconds</p>
+      <p></p>
+    </div>
   </form>
    `
 
