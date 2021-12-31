@@ -12,8 +12,11 @@
           <tr>
             <tr *ngFor="let AppUserMeeting of usersListService.appUsersMeetingListIsNotPart">
               <td>{{AppUserMeeting.name}}</td>
-              <td><img (click)="participate(AppUserMeeting)"
+              <td ><img (click)="participate(AppUserMeeting)"
               src="../../assets/emptyTick.jpg">
+          <th><img src="../../assets/blank.png"></th>
+          <th><img src="../../assets/blank.png"></th>
+          <th><img src="../../assets/blank.png"></th>
             </tr>
         </table>
       </div>

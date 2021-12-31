@@ -1,12 +1,12 @@
 
 img{
-  height: 35px;
+  width: 35px;
 }
 table{
   left: auto;
 }
-.containerNonPart{
 
+.containerNonPart{
   width: 300px;
   margin-left: 1.5cm;
 }
