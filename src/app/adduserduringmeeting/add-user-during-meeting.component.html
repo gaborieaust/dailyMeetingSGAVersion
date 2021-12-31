@@ -3,9 +3,8 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<div class="ml-5">
-    <div class="container col-3 float-left">
-        <div id =List *ngIf="usersListService.appUsersMeetingListIsNotPart.length>0" class="mb-3 text-center ">
+<div class="containerNonPart" *ngIf="usersListService.appUsersMeetingListIsNotPart.length>0">
+        <div id =List  class="mb-3 text-center ">
           List of non-participants
         </div>
       <div class="table-responsive">

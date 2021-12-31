@@ -59,6 +59,9 @@ export class MeetingBoardComponent implements OnInit {
     this.resetTimer();
     this.start();
     this.startMeetingButton =true ;
+
+    // supprimer le choix de la durée
+    this.usersListService.setupDuration =false;
   }
 
   nextSpeaker () {

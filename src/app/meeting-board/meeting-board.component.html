@@ -10,8 +10,9 @@
     <div class="containerButtons">
       <button  *ngIf="this.usersListService.meetingStarted == false && this.usersListService.lastUser == false" (click)="startMeeting()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Start a meeting</button>
       <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false" (click)="nextSpeaker()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Next</button>
-      <button  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="Pause()"> Pause </button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="startAfterBreak()"> Restart</button>
+      <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="Pause()"> Pause </button>
+      <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false"   class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="startAfterBreak()"> Restart</button>
+        <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == true"  (click)="endMeeting( )" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">End Meeting</button>
     </div>
     <div class="containerSpeaker">
             <div  *ngIf="this.usersListService.meetingStarted == true" class="border border-dark px-5 py-2 bg-light text-center mt-5" >
@@ -23,9 +24,7 @@
                 <button  *ngIf="this.startMeetingButton === true " class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="start()"> Start the timer </button>
               </div>
             </div>
-              <div>
-                <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == true"  (click)="endMeeting()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">End Meeting</button>
-              </div>
+
               <div class="mt-5">
                <button *ngIf="this.usersListService.meetingStarted== false && this.usersListService.lastUser == true"  class="startMeetingButton mt-5">Meeting Finished</button>
               </div>

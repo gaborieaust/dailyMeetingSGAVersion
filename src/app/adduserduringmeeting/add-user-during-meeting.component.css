@@ -5,3 +5,8 @@ img{
 table{
   left: auto;
 }
+.containerNonPart{
+
+  width: 300px;
+  margin-left: 1.5cm;
+}
