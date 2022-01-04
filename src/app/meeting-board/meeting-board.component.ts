@@ -143,7 +143,6 @@ export class MeetingBoardComponent implements OnInit {
 
     let speakingDuration = Math.round((this.usersListService.stopChrono.getTime()
       - this.usersListService.startChrono.getTime())/1000)
-    console.log("je suis ici")
     this.service.getLastMeeting().subscribe(lastMeeting => {
       this.service.getAppUsersList().subscribe(AppUsersList => {
         let appUser = AppUsersList.find(appUser => appUser.id === this.currentSpeaker.id);
@@ -166,7 +165,6 @@ export class MeetingBoardComponent implements OnInit {
           this.usersListService.meetingStarted= false;
         })
         this.usersListService.meetingStarted=false;
-        console.log("je suis ici bis")
       })
     })
   }
