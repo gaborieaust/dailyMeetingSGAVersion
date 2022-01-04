@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class Service {
 
-  baseAPIUrl = 'https://hidden-earth-87689.herokuapp.com/api/';
+  baseAPIUrl = 'https://boiling-island-93287.herokuapp.com/api/';
 
   constructor(private http: HttpClient) {
   }
@@ -54,6 +54,6 @@ export class Service {
   deleteUser(id : number) {
     console.log(this.baseAPIUrl+ 'user/' +  id)
     return this.http.delete(this.baseAPIUrl+ 'user/' +id).subscribe()
-    console.log('je viens ici 2')
+
   }
 }
