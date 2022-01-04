@@ -167,5 +167,14 @@ export class MeetingBoardComponent implements OnInit {
         this.usersListService.meetingStarted=false;
       })
     })
+
+
   }
+  meetingFinished(){ // without type info
+    // @ts-ignore
+    location.assign('https://dailymeetingproject.herokuapp.com/')
+  }
+
 }
+
+

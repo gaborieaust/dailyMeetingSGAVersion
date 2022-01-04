@@ -26,7 +26,7 @@
             </div>
 
               <div class="mt-5">
-               <button *ngIf="this.usersListService.meetingStarted== false && this.usersListService.lastUser == true"  class="startMeetingButton mt-5">Meeting Finished</button>
+               <button *ngIf="this.usersListService.meetingStarted== false && this.usersListService.lastUser == true"  class="startMeetingButton mt-5" (click)="meetingFinished()">Meeting Finished</button>
               </div>
         </div>
   </div>
