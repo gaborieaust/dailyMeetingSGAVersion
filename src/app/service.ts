@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class Service {
 
-  baseAPIUrl = 'https://mysterious-atoll-85823.herokuapp.com/api/';
+  baseAPIUrl = 'https://hidden-earth-87689.herokuapp.com/api/';
 
   constructor(private http: HttpClient) {
   }
