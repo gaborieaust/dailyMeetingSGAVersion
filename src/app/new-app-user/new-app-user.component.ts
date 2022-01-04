@@ -49,9 +49,13 @@ export class NewAppUserComponent implements OnInit {
     //console.log(f.value)
     // @ts-ignore
     this.nom = this.user.nom
-    console.log (this.user.nom)
+
     let list = (this.userlistservice.appUsersMeetingList.map(appUser => appUser.id));
-    let nextId = Math.max.apply(Math,list)+1
+    let nextId =1 ;
+    if (list.length > 0){
+    nextId = Math.max.apply(Math,list)+1
+    }
+    console.log(nextId)
     // Start to create a new user from scratch
     // @ts-ignore
     let newUser = ({
