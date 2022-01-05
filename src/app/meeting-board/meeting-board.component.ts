@@ -28,6 +28,7 @@ export class MeetingBoardComponent implements OnInit {
   currTime: number = 0;
   obsTimer: Observable<number> = timer(0,1000);
   subscription: Subscription | undefined
+  buttonDisappear : boolean =false
 
   constructor(
     private service : Service,
@@ -35,7 +36,9 @@ export class MeetingBoardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  }
+    }
+
+
 
   startMeeting () {
     this.usersListService.meetingStarted = true;
@@ -62,6 +65,11 @@ export class MeetingBoardComponent implements OnInit {
 
     // supprimer le choix de la durée
     this.usersListService.setupDuration =false;
+
+    //
+    if (this.usersListService.minutes!=0 || this.usersListService.seconds!=0 )
+    this.buttonDisappear=true;
+
   }
 
   nextSpeaker () {
