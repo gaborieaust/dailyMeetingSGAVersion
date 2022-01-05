@@ -74,6 +74,8 @@ export class NewAppUserComponent implements OnInit {
       "isSpeaking": 0,
       "timeKeeper": false,
     })
+    // remettre le champ vierge
+    this.user.nom="";
   }
 
 

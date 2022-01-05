@@ -1,7 +1,7 @@
 
 <form  *ngIf= "this.userlistservice.addUserOn == true"  id="monform" #monForm=ngForm (submit)="createNewUser()">
 <div>
-  Nom : <input type=text name=nom [(ngModel)]=user.nom>
+  Nom : <input type=text name=nom id="nom" [(ngModel)]=user.nom>
 </div>
   <button type="submit">
     Ajouter
