@@ -8,7 +8,7 @@
 <body>
   <div class="containerGlobal">
     <div class="containerButtons">
-      <button  *ngIf="this.usersListService.meetingStarted == false && this.usersListService.lastUser == false && this.usersListService.numberParticipants>0" (click)="startMeeting()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Start a meeting</button>
+      <button  *ngIf="this.usersListService.meetingStarted == false && this.usersListService.lastUser == false && this.usersListService.numberParticipants>0 && this.usersListService.minutes>0 || this.usersListService.seconds>0 " (click)="startMeeting()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Start a meeting</button>
       <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false && this.startMeetingButton === false" (click)="nextSpeaker()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Next</button>
       <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false && this.startMeetingButton === false" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="Pause()"> Pause </button>
       <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false && this.startMeetingButton === false"   class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="startAfterBreak()"> Restart</button>
