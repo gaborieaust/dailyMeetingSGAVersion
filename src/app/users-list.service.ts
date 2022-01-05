@@ -75,10 +75,16 @@ export class UsersListService {
     console.log("total minutes into seconds : " + this.totalTimingMinutesIntoSeconds);
     totalTimingintoSec = (+this.totalTimingMinutesIntoSeconds  );
     console.log(totalTimingintoSec);
-    this.minutes = Math.floor((totalTimingintoSec / this.numberParticipants)/60);
-    console.log (this.minutes)
-    this.seconds = (totalTimingintoSec/ this.numberParticipants) - this.minutes * 60;
-    totalTimingintoSec = 0 ;
+    // to handle the fact that there could be a possiblity of no participant
+    if (this.numberParticipants === 0){
+      this.seconds=0;
+      this.minutes=0;
+    }else {
+      this.minutes = Math.floor((totalTimingintoSec / this.numberParticipants)/60);
+      console.log (this.minutes)
+      this.seconds = (totalTimingintoSec/ this.numberParticipants) - this.minutes * 60;
+      totalTimingintoSec = 0 ;
+    }
   }
   initialisationUsersList() {
     this.service.getLastMeeting().subscribe(lastMeeting =>
