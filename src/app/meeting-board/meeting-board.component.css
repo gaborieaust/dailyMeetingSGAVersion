@@ -15,23 +15,18 @@
 }
 
 .containerButtons {
-  width: 350px;
   grid-template-columns: 120px 120px 120px;
-  align-items:flex-end;
+  align-items:center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.containerSpeaker{
-
-  display: flex;
-  flex-direction: row;
-  margin-left: 250px;
-  align-items:flex-start;
-
-}
-
 #logoMicro{
   height: 25px;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
 }

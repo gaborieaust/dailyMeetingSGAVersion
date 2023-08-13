@@ -6,15 +6,17 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-  <div class="containerGlobal">
-    <div class="containerButtons">
-      <button  *ngIf="this.usersListService.meetingStarted == false && this.usersListService.lastUser == false && this.usersListService.numberParticipants>0 "  (click)="startMeeting()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Start a meeting</button>
-      <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false && this.startMeetingButton === false" (click)="nextSpeaker()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Next</button>
+  <div class="containerButtons">
+    <div >
+      <div class="centered">
+        <button  *ngIf="this.usersListService.meetingStarted == false && this.usersListService.lastUser == false && this.usersListService.numberParticipants>0 "  (click)="startMeeting()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Start a meeting</button>
+      </div>
+        <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false && this.startMeetingButton === false" (click)="nextSpeaker()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Next</button>
       <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false && this.startMeetingButton === false" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="Pause()"> Pause </button>
       <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == false && this.startMeetingButton === false"   class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="startAfterBreak()"> Restart</button>
         <button *ngIf="this.usersListService.meetingStarted== true && this.usersListService.lastUser == true"  (click)="endMeeting( )" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">End Meeting</button>
-    </div>
-    <div class="containerSpeaker">
+
+      <div class="containerSpeaker">
             <div  *ngIf="this.usersListService.meetingStarted == true" class="border border-dark px-5 py-2 bg-light text-center mt-5" >
               <div class="h3">
                 <img src="assets/micro2.png" id="logoMicro"> => {{this.currentSpeaker.name}}
@@ -28,7 +30,8 @@
               <div class="mt-5">
                <button *ngIf="this.usersListService.meetingStarted== false && this.usersListService.lastUser == true"  class="startMeetingButton mt-5" (click)="meetingFinished()">Meeting Finished</button>
               </div>
-        </div>
+      </div>
+    </div>
   </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

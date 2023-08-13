@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ClarityModule } from "@clr/angular";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
       {path:'meeting', component: MainBoardComponent},
       ]
     ),
+    ClarityModule,
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     FormlyBootstrapModule,
