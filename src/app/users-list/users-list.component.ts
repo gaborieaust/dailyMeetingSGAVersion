@@ -88,8 +88,7 @@ export class UsersListComponent implements OnInit {
         if (timeKeeperExist) {
           location.assign('http://localhost:4200/meeting/')
         } else {
-          // @ts-ignore
-          appUserMeeting?.timeKeeper = true;
+          appUserMeeting.timeKeeper = true;
 
           this.service.getLastMeeting().subscribe(lastMeeting => {
             this.service.getAppUsersList().subscribe(AppUsersList => {

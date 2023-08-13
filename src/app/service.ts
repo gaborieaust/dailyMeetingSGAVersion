@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class Service {
 
-  baseAPIUrl = 'https://boiling-island-93287.herokuapp.com/api/';
+  baseAPIUrl = 'http://localhost:8080/api/';
 
   constructor(private http: HttpClient) {
   }
