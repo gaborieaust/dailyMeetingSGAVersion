@@ -104,5 +104,7 @@
       }
     }
   },
-  "defaultProject": "daily-meeting-angular"
+  "cli": {
+    "analytics": false
+  }
 }
