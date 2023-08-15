@@ -7,7 +7,6 @@ import {FormlyFieldConfig, FormlyFormOptions} from "@ngx-formly/core";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
-import { FormlyMaterialModule } from '@ngx-formly/material';
 import {User} from "../user";
 
 @Component({
@@ -48,7 +47,7 @@ export class NewAppUserComponent implements OnInit {
     // id max
     //console.log(f.value)
     // @ts-ignore
-    this.nom = this.user.nom
+    this.nom = this.capitalizeFirstLetter(this.user.nom);
 
     let list = (this.userlistservice.appUsersMeetingList.map(appUser => appUser.id));
     let nextId =1 ;
@@ -77,6 +76,15 @@ export class NewAppUserComponent implements OnInit {
     // remettre le champ vierge
     this.user.nom="";
   }
+  // Harmonisation des noms d'utilisateurs
+  capitalizeFirstLetter(surname: string): string {
+  if (!surname) {
+    return surname; // Gérer le cas où la chaîne est vide
+  }
 
+  const firstLetter = surname.charAt(0).toUpperCase();
+  const restOfString = surname.slice(1).toLowerCase();
 
+  return firstLetter + restOfString;
+  }
 }

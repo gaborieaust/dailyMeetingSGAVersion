@@ -1,8 +1,31 @@
+.text-center{
+padding-bottom: 10px;
+}
+
 .table{
-  width: 100%;
+  width: 90%;
   table-layout: fixed;
+  margin: 0 auto;
+  background-color: white;
+}
+
+table.table thead {
+  background-color: white;
+}
+
+.title_Part{
+  padding-bottom: 5px;
+  text-align: center;
 }
 
 img {
   height: 35px;
+}
+
+th img {
+  border: 1px solid black; /* Ajoutez la bordure selon vos besoins */
+}
+
+td.left{
+  vertical-align: middle;
 }

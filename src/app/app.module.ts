@@ -17,6 +17,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ClarityModule } from "@clr/angular";
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     CountdownModule,
     BrowserModule,
+    ClarityModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       {path:'', component : InitializationComponent},
       {path:'auth', component: AuthentificationComponent},

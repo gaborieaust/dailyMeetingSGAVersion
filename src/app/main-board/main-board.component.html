@@ -1,15 +1,26 @@
-<div class="flex_wrap">
-  <div >
-    <app-users-list></app-users-list>
-  </div>
-  <div><app-add-user-during-meeting></app-add-user-during-meeting>
-  </div >
-  <div><app-setup-duration></app-setup-duration>
-  </div>
-  <div>
-    <app-meeting-board></app-meeting-board>
-  </div>
-  <div>
-    <app-new-app-user></app-new-app-user>
-  </div>
+<link rel="stylesheet" href="https://unpkg.com/@clr/ui/clr-ui.min.css" />
+
+<div class="main-container">
+    <header class="header header-6">
+      Daily Meeting Application
+    </header>
+    <div class="content-container">
+      <div class="content-area">
+        <div class="flex_wrap">
+          <app-add-user-during-meeting></app-add-user-during-meeting>
+          <div><app-setup-duration></app-setup-duration>
+          </div>
+          <div>
+            <app-meeting-board></app-meeting-board>
+          </div>
+        </div>
+      </div>
+      <clr-vertical-nav>
+        <app-users-list></app-users-list>
+        <div>
+          <app-new-app-user></app-new-app-user>
+        </div>
+      </clr-vertical-nav>
+    </div>
+
 </div>

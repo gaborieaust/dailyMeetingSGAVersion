@@ -2,20 +2,17 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-<div class="container col-3 mb-5">
-  <div class="text-center rounded border bg-light">
-    <h6>Daily meeting from {{usersListService.dateMeeting}}</h6>
-  </div>
+<div class="text-center">
+  Daily meeting from {{usersListService.dateMeeting}}
 </div>
-<div class="ml-5">
-  <div class="container col-3 float-left">
-    <div class="mb-3 text-center">
+<div>
+  <div >
+    <div class="title_Part">
       Liste des participants
     </div>
-    <div class="table-responsive">
-      <table id="table" class="table rounded border" *ngIf="usersListService.appUsersMeetingList.length>0">
-        <thead>
+    <div >
+      <table class="table" *ngIf="usersListService.appUsersMeetingList.length>0">
+        <thead style="background-color: white;">
         <tr>
           <th></th>
           <th><img src="../../assets/tick.jpg"></th>
@@ -26,7 +23,7 @@
          </thead>
          <tbody>
          <tr *ngFor="let AppUserMeeting of usersListService.appUsersMeetingList">
-           <td>{{AppUserMeeting.name}}</td>
+           <td class="left">{{AppUserMeeting.name}}</td>
            <td><img (click)="unParticipate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==true "
                     src="../../assets/tick.jpg">
              <img (click)="participate(AppUserMeeting)" *ngIf="AppUserMeeting.isParticipant==false "
@@ -36,7 +33,7 @@
            <!--<td><img src="../../assets/timekeeper.jpg" *ngIf="AppUserMeeting.timeKeeper==true">
              <img (click)="timeKeeper(AppUserMeeting)" src="../../assets/emptyTick.jpg"
                   *ngIf="AppUserMeeting.timeKeeper==false"></td> -->
-          <th><img (click)="deleteUser(AppUserMeeting)" src="../../assets/RedCross.PNG"></th>
+          <td><img (click)="deleteUser(AppUserMeeting)" src="../../assets/RedCross.PNG"></td>
         </tr>
         </tbody>
       </table>
@@ -52,4 +49,3 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-</body>
