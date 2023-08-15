@@ -13,11 +13,11 @@ import {CountdownComponent} from "ngx-countdown";
 export class MeetingBoardComponent implements OnInit {
   @ViewChild('countdown') counter: CountdownComponent | undefined;
   displayAfterBreak = true;
-  startMeetingButton =true ;
+  startMeetingButton = true ;
   //lastUser = false ;
   //meetingStarted = false;
   launchTheChrono = true;
-  totalSpeakingDuration : number =0;
+  totalSpeakingDuration : number = 0;
   currentSpeaker : AppUserMeeting = {
     id: 0,
     name: "test",

@@ -1,13 +1,13 @@
 <div class="containerTiming" *ngIf="this.usersListService.setupDuration==true">
 
   <form id ="setupduration">
-    <tr>Timing meeting </tr>
+    <tr>Durée du meeting </tr>
 
     <input (keyup)="this.usersListService.totalMinute($event);handleChange($event)" type="number" #minutes [defaultValue]="0"  >
       minutes
     <div id = totalMeetingDuration>
-      Individual speaking time  <time></time>
-      <p>{{this.usersListService.minutes}} minutes {{this.usersListService.seconds}} seconds</p>
+      Temps de parole individuel  <time></time>
+      <p>{{this.usersListService.minutes}} minutes {{this.usersListService.seconds}} secondes</p>
       <p></p>
     </div>
   </form>

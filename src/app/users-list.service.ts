@@ -11,7 +11,7 @@ import {DatePipe} from "@angular/common";
 
 export class UsersListService {
   addUserOn: boolean = true;
-  numberParticipants:number =0;
+  numberParticipants:number = 0;
   appUsersMeetingList: AppUserMeeting[] = [];
   appUsersMeetingListIsPart: AppUserMeeting[] = [];
   appUsersMeetingListIsNotPart: AppUserMeeting[] = [];
@@ -21,7 +21,7 @@ export class UsersListService {
   startChrono = new Date();
   stopChrono = new Date();
   totalTimingMinutesIntoSeconds: number = 0;
-  totalIntoSeconds :  number =0;
+  totalIntoSeconds :  number = 0;
   setupDuration = true;
   minutes : number  = 0;
   seconds : number =0;
@@ -65,13 +65,13 @@ export class UsersListService {
 
   ComputeTotalTime() {
     // count number of participants
-    this.numberParticipants =0;
+    this.numberParticipants=0;
     for (const appUser of this.appUsersMeetingList) {
       if (appUser.isParticipant === true) {
         this.numberParticipants = this.numberParticipants + 1
       }
     }
-    let totalTimingintoSec : number =0 ;
+    let totalTimingintoSec : number=0 ;
     console.log("total minutes into seconds : " + this.totalTimingMinutesIntoSeconds);
     totalTimingintoSec = (+this.totalTimingMinutesIntoSeconds  );
     console.log(totalTimingintoSec);
