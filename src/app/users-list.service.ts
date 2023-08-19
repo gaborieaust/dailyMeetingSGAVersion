@@ -58,7 +58,6 @@ export class UsersListService {
     this.minutes =0;
     this.totalTimingMinutesIntoSeconds = 0;
     this.totalTimingMinutesIntoSeconds = $event.target.value * 60;
-    console.log(this.totalTimingMinutesIntoSeconds)
     this.ComputeTotalTime();
   }
 
@@ -72,16 +71,13 @@ export class UsersListService {
       }
     }
     let totalTimingintoSec : number=0 ;
-    console.log("total minutes into seconds : " + this.totalTimingMinutesIntoSeconds);
     totalTimingintoSec = (+this.totalTimingMinutesIntoSeconds  );
-    console.log(totalTimingintoSec);
     // to handle the fact that there could be a possiblity of no participant
     if (this.numberParticipants === 0){
       this.seconds=0;
       this.minutes=0;
     }else {
       this.minutes = Math.floor((totalTimingintoSec / this.numberParticipants)/60);
-      console.log (this.minutes)
       this.seconds = (totalTimingintoSec/ this.numberParticipants) - this.minutes * 60;
       totalTimingintoSec = 0 ;
     }

@@ -1,12 +1,19 @@
-
 img{
   width: 35px;
 }
-table{
-  left: auto;
+
+.table{
+  width: 90%;
+  table-layout: fixed;
+  margin: 0 auto;
+  background-color: white;
 }
 
-.containerNonPart{
-  width: 300px;
-  margin-left: 1.5cm;
+.title_Part{
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+td.left{
+  vertical-align: middle;
 }

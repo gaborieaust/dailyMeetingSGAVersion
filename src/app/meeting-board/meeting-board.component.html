@@ -22,7 +22,7 @@
               </div>
                 <countdown #countdown [config]="{ leftTime: totalSpeakingDuration, demand: true}" ></countdown>
               <div>
-                <button  *ngIf="this.startMeetingButton === true " class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="start()"> Start the timer </button>
+                <button  *ngIf="this.startMeetingButton === true " class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="startingPhase()"> Start the timer </button>
               </div>
             </div>
 

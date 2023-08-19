@@ -59,7 +59,7 @@ export class NewAppUserComponent implements OnInit {
     // @ts-ignore
     let newUser = ({
       "id": nextId,
-      "name": this.user.nom,
+      "name": this.nom,
       "isActive": true
     })
     console.log(newUser)

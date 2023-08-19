@@ -19,6 +19,7 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClarityModule } from "@clr/angular";
+import { CountdownComponent } from './countdown/countdown.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ClarityModule } from "@clr/angular";
     AddUserDuringMeetingComponent,
     SetupDurationComponent,
     NewAppUserComponent,
+    CountdownComponent,
 
   ],
   imports: [

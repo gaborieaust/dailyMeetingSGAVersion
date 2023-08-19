@@ -1,9 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, Output, ViewChild, EventEmitter} from '@angular/core';
 import {UsersListService} from "../users-list.service";
 import {AppUserMeeting} from "../appUser";
 import {Service} from "../service";
 import {Observable, Subscription, timer} from "rxjs";
 import {CountdownComponent} from "ngx-countdown";
+import {EventServiceService} from "../event-service.service";
 
 @Component({
   selector: 'app-meeting-board',
@@ -11,6 +12,7 @@ import {CountdownComponent} from "ngx-countdown";
   styleUrls: ['./meeting-board.component.css']
 })
 export class MeetingBoardComponent implements OnInit {
+  @Output() dataEvent = new EventEmitter<boolean>();
   @ViewChild('countdown') counter: CountdownComponent | undefined;
   displayAfterBreak = true;
   startMeetingButton = true ;
@@ -18,6 +20,7 @@ export class MeetingBoardComponent implements OnInit {
   //meetingStarted = false;
   launchTheChrono = true;
   totalSpeakingDuration : number = 0;
+  startCountDown : boolean = false;
   currentSpeaker : AppUserMeeting = {
     id: 0,
     name: "test",
@@ -29,11 +32,18 @@ export class MeetingBoardComponent implements OnInit {
   obsTimer: Observable<number> = timer(0,1000);
   subscription: Subscription | undefined
   buttonDisappear : boolean =false
+  private countdownFinishedSubscription: Subscription;
 
   constructor(
     private service : Service,
-    public usersListService : UsersListService
-  ) { }
+    public usersListService : UsersListService,
+    private eventService : EventServiceService
+  ) {
+    this.countdownFinishedSubscription = this.eventService.countDownFinished$.subscribe(() => {
+      // Code spécifique de Countdown 2
+      this.firstStart();
+    });
+  }
 
   ngOnInit(): void {
     }
@@ -61,8 +71,7 @@ export class MeetingBoardComponent implements OnInit {
     this.totalSpeakingDuration =+((this.usersListService.minutes)*60)+ +this.usersListService.seconds;
     this.resetTimer();
     this.start();
-    this.startMeetingButton =true ;
-
+    this.startMeetingButton = true ;
     // supprimer le choix de la durée
     this.usersListService.setupDuration =false;
 
@@ -70,6 +79,7 @@ export class MeetingBoardComponent implements OnInit {
     if (this.usersListService.minutes!=0 || this.usersListService.seconds!=0 )
     this.buttonDisappear=true;
 
+    this.eventService.startCountdown(false);
   }
 
   nextSpeaker () {
@@ -129,8 +139,19 @@ export class MeetingBoardComponent implements OnInit {
     this.counter?.restart();
   }
   start() {
-    this.counter?.begin()
+    this.counter?.begin();
     this.startMeetingButton = false;
+  }
+
+  firstStart() {
+    this.counter?.begin();
+    this.startMeetingButton = false;
+  }
+
+
+
+  startingPhase() {
+    this.eventService.startCountdown(true);
   }
 
   Pause(){
